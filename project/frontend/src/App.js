@@ -10,13 +10,14 @@ function App() {
   return (
     <div className="App">
       <Router>
-      <div>
-        <Navigation />
-        <Routes>
-          {/* <Route exact path="/" component={Home} /> */}
-        </Routes>
-      </div>
-    </Router>
+        <div>
+          <Navigation />
+          <Routes>
+            {/* Define your routes here */}
+            {/* <Route exact path="/" component={Home} /> */}
+          </Routes>
+        </div>
+      </Router>
     </div>
   );
 }
