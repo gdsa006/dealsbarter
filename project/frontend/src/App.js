@@ -1,9 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navigation from './components/elements/Navigation';
+import Home from './components/pages/Home';
+import Footer from './components/elements/Footer';
 
 
 function App() {
@@ -14,8 +18,9 @@ function App() {
           <Navigation />
           <Routes>
             {/* Define your routes here */}
-            {/* <Route exact path="/" component={Home} /> */}
+            <Route path="/" element={<Home />} />
           </Routes>
+          <Footer />
         </div>
       </Router>
     </div>

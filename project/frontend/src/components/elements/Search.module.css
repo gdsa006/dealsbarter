@@ -1,0 +1,107 @@
+.searchBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    /* Adjust the width as needed */
+    background-color: rgba(255, 255, 255, 0.95);
+    /* Set the background color with transparency */
+    padding: 10px;
+    /* Add padding as needed */
+    border-radius: 5px;
+    /* Add border-radius as needed */
+    padding: 20px;
+    margin-top: -20px;
+}
+
+.searchBox form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchBox .form-control {
+    margin-right: 10px;
+}
+
+.searchBox .btn {
+    margin-left: 10px;
+}
+
+.searchForm {
+    display: flex;
+    align-items: center;
+}
+
+.categoryDropdown {
+    width: 150px;
+    /* Adjust the width as needed */
+    border: 0;
+    background-color: transparent;
+    font-size: 14px;
+    height: 40px;
+}
+
+.searchInput {
+    flex: 1;
+    border: 0;
+    background-color: transparent;
+    font-size: 14px;
+    height: 40px;
+}
+
+.locationDropdown {
+    width: 150px;
+    /* Adjust the width as needed */
+    border: 0;
+    background-color: transparent;
+    font-size: 14px;
+    height: 40px;
+}
+
+.searchButton {
+    margin-left: 10px;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position:bottom;
+}
+
+.imageContainer {
+    text-align: center;
+    height: 50vh;
+    position: relative;
+}
+
+.trustedContainer{
+    position: absolute;
+    bottom: -52px;
+    background: #ffffff;
+    transform: translateX(-50%) translateY(0px);
+    left: 50%;
+    z-index: 9;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Apply drop shadow */
+    border-radius: 5px;
+}
+
+.trustedContainer .column{
+    padding: 35px 55px;
+}
+
+.trustedContainer .column:nth-child(even){
+    background-color: aliceblue;
+}
+
+.trustedContainer .column svg{
+    font-size: 35px;
+    color: #3c6baf;
+}
+
+.trustedContainer .column p{
+    margin-bottom: 0;
+    margin-top: 6px;
+}
