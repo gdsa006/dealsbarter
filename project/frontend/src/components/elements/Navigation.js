@@ -5,14 +5,18 @@ import navigation from './Navigation.module.css';
 import logo from '../../images/logo.png'; // Import your logo image
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faLock, faEnvelope, faMobile } from '@fortawesome/free-solid-svg-icons';
 
 function Navigation() {
 
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
   let timeoutRef = null;
-  
+
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const [showPopup, setShowPopup] = useState(false);
+  const [activeTab, setActiveTab] = useState('login');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,7 +51,28 @@ function Navigation() {
     }, 300); // Adjust the duration (in milliseconds) as needed
   };
 
-  
+  const openPopup = () => {
+    setShowPopup(true);
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
+  };
+
+  const switchTab = (tab) => {
+    setActiveTab(tab);
+  };
+
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    // Handle login form submission
+  };
+
+  const handleRegisterSubmit = (e) => {
+    e.preventDefault();
+    // Handle register form submission
+  };
+
 
 
   return (
@@ -82,14 +107,107 @@ function Navigation() {
                 unmountOnExit
               >
                 <Dropdown.Menu className={`dropdown-menu-right ${navigation.dropdownMenu}`}>
-                  <Dropdown.Item className={navigation.dropdownItem} href="#action1">Login/Register</Dropdown.Item>
-                  <Dropdown.Item className={navigation.dropdownItem} href="#action2">Help</Dropdown.Item>
+                  <Dropdown.Item className={navigation.dropdownItem} onClick={openPopup}>Login/Register</Dropdown.Item>
+                  {/* Your existing code */}
                 </Dropdown.Menu>
               </CSSTransition>
             </Dropdown>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+
+      {showPopup && (
+        <div className={navigation.popup}>
+          <div className={navigation.popupContent}>
+            <button className={navigation.closeButton} onClick={closePopup}>
+              &times;
+            </button>
+            <div className={navigation.tabButtons}>
+              <button
+                className={`${navigation.tabButton} ${activeTab === 'login' ? navigation.activeTab : ''}`}
+                onClick={() => switchTab('login')}
+              >
+                Login
+              </button>
+              <button
+                className={`${navigation.tabButton} ${activeTab === 'register' ? navigation.activeTab : ''}`}
+                onClick={() => switchTab('register')}
+              >
+                Register
+              </button>
+            </div>
+            <div className={navigation.tabContent}>
+              {activeTab === 'login' && (
+                <form onSubmit={handleLoginSubmit}>
+                  <div className={navigation.formGroup}>
+                    <label htmlFor="login-email">
+                      <FontAwesomeIcon icon={faEnvelope} />
+                    </label>
+                    <input
+                      type="text"
+                      id="login-email"
+                      placeholder="Email/Mobile"
+                      required
+                    />
+                  </div>
+                  <div className={navigation.formGroup}>
+                    <label htmlFor="login-password">
+                      <FontAwesomeIcon icon={faLock} />
+                    </label>
+                    <input
+                      type="password"
+                      id="login-password"
+                      placeholder="Password"
+                      required
+                    />
+                  </div>
+                  <div className={navigation.formGroup}>
+      <div className={navigation.rememberMeContainer}>
+        <input type="checkbox" id="rememberMe" />
+        <label htmlFor="rememberMe">Remember me</label>
+      </div>
+      <a href="#" className={navigation.forgotPasswordLink}>Forgot password?</a>
+    </div>
+                  <button type="submit" className={navigation.formButton}>
+                    Login
+                  </button>
+                </form>
+              )}
+              {activeTab === 'register' && (
+                <form onSubmit={handleRegisterSubmit}>
+                  <div className={navigation.formGroup}>
+                    <label htmlFor="registerName">
+                      <FontAwesomeIcon icon={faUser} />
+                    </label>
+                    <input type="text" id="registerName" placeholder="Name" required />
+                  </div>
+                  <div className={navigation.formGroup}>
+                    <label htmlFor="registerEmail">
+                      <FontAwesomeIcon icon={faEnvelope} />
+                    </label>
+                    <input type="email" id="registerEmail" placeholder="Email" required />
+                  </div>
+                  <div className={navigation.formGroup}>
+                    <label htmlFor="registerPassword">
+                      <FontAwesomeIcon icon={faLock} />
+                    </label>
+                    <input type="password" id="registerPassword" placeholder="Password" required />
+                  </div>
+                  <div className={navigation.formGroup}>
+                    <label htmlFor="registerPhone">
+                      <FontAwesomeIcon icon={faMobile} />
+                    </label>
+                    <input type="tel" id="registerPhone" placeholder="Phone" required />
+                  </div>
+                  <button type="submit" className={navigation.formButton}>
+                    Register
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

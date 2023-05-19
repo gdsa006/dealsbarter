@@ -5,7 +5,6 @@ button:focus {
   outline: none !important;
   border: 0 !important;
   box-shadow: 0 0 0 transparent !important;
-  background-color: transparent !important;
 }
 
 .section{
