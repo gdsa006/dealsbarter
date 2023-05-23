@@ -1,6 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
-import slider from './Slider.module.css';
+import slider from './ServiceSlider.module.css';
 import { Container, Row, Col } from 'react-bootstrap';
 
 const settings = {

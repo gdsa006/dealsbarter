@@ -5,7 +5,7 @@ import navigation from './Navigation.module.css';
 import logo from '../../images/logo.png'; // Import your logo image
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
-import { faLock, faEnvelope, faMobile } from '@fortawesome/free-solid-svg-icons';
+import { faLock, faEnvelope, faMobile, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 function Navigation() {
 
@@ -81,16 +81,31 @@ function Navigation() {
         <Navbar.Brand href="#home">
           <img src={logo} alt="Logo" className={navigation.logo} /> {/* Include your logo image here */}
         </Navbar.Brand>
+
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
+
+
+          {isScrolled && (
+            <Nav className={`ml-auto ${navigation.navbarNav}`}>
+
+<Form inline className={`${navigation.searchForm} ml-auto`}>
+  <FormControl type="text" placeholder="Search" className={navigation.searchInput} />
+  <Button variant="outline-primary" className={navigation.searchButton}>
+    <FontAwesomeIcon icon={faSearch} />
+  </Button>
+</Form>
+            </Nav>
+          )}
+
+
+
           <Nav className={`ml-auto ${navigation.navbarNav}`}>
             <Nav.Link href="#buy" className={navigation.navbarNavNavLink}>Buy</Nav.Link>
             <Nav.Link href="#sell" className={navigation.navbarNavNavLink}>Sell</Nav.Link>
             <Nav.Link href="#services" className={navigation.navbarNavNavLink}>Services</Nav.Link>
             <Nav.Link href="#menu1" className={navigation.navbarNavNavLink}>Menu1</Nav.Link>
             <Nav.Link href="#menu2" className={navigation.navbarNavNavLink}>Menu2</Nav.Link>
-          </Nav>
-          <Nav>
             <Dropdown
               show={showDropdown}
               onMouseEnter={handleDropdownMouseEnter}
@@ -113,6 +128,7 @@ function Navigation() {
               </CSSTransition>
             </Dropdown>
           </Nav>
+
         </Navbar.Collapse>
       </Navbar>
 
@@ -162,12 +178,12 @@ function Navigation() {
                     />
                   </div>
                   <div className={navigation.formGroup}>
-      <div className={navigation.rememberMeContainer}>
-        <input type="checkbox" id="rememberMe" />
-        <label htmlFor="rememberMe">Remember me</label>
-      </div>
-      <a href="#" className={navigation.forgotPasswordLink}>Forgot password?</a>
-    </div>
+                    <div className={navigation.rememberMeContainer}>
+                      <input type="checkbox" id="rememberMe" />
+                      <label htmlFor="rememberMe">Remember me</label>
+                    </div>
+                    <a href="#" className={navigation.forgotPasswordLink}>Forgot password?</a>
+                  </div>
                   <button type="submit" className={navigation.formButton}>
                     Login
                   </button>

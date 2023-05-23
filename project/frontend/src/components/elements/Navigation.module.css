@@ -272,3 +272,49 @@ button:hover {
 .loginButton:hover {
   background-color: #0056b3;
 }
+
+/* Navigation.module.css */
+
+/* Navigation.module.css */
+
+/* Navigation.module.css */
+
+.searchForm {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  max-width: 600px; /* Set a maximum width for the search form */
+  margin: 0 auto; /* Center the search form horizontally */
+}
+
+
+.searchInput {
+  width: 500px;
+  padding: 22px 10px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  margin-right: 5px;
+  background-color: #f5f5f5;
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.searchButton {
+  display: flex;
+  align-items: center;
+  padding: 14px 22px;
+  background-color: #007bff;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.searchButton:hover {
+  background-color: #0056b3;
+}

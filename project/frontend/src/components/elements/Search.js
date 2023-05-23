@@ -58,31 +58,33 @@ function Search() {
                     </div>
                 </div>
                 <div className={search.trustedContainer}>
-                    <Container>
-                        <Row>
-                            <Col className={search.column}>
+                    <Container fluid>
+                        <Row className={search.columnRow}>
+                            <Col className={`text-center ${search.column}`}>
                                 <FontAwesomeIcon icon={faTools} />
                                 <p>Icon 1</p>
                             </Col>
-                            <Col className={search.column}>
+                            <Col className={`text-center ${search.column}`}>
                                 <FontAwesomeIcon icon={faTools} />
                                 <p>Icon 2</p>
                             </Col>
-                            <Col className={search.column}>
+                            <Col className={`text-center ${search.column}`}>
                                 <FontAwesomeIcon icon={faTools} />
                                 <p>Icon 3</p>
                             </Col>
-                            <Col className={search.column}>
+                            <Col className={`text-center ${search.column}`}>
                                 <FontAwesomeIcon icon={faTools} />
                                 <p>Icon 4</p>
                             </Col>
-                            <Col className={search.column}>
+                            <Col className={`text-center ${search.column}`}>
                                 <FontAwesomeIcon icon={faTools} />
                                 <p>Icon 5</p>
                             </Col>
                         </Row>
                     </Container>
                 </div>
+
+
             </div>
         </div>
     );
