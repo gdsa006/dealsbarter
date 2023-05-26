@@ -4,7 +4,7 @@ import wideImage from '../../images/wideImage.jpg'; // Import your logo image
 import { Form, Button } from 'react-bootstrap';
 import { Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTools } from '@fortawesome/free-solid-svg-icons';
+import { faTools,faWrench, faGift, faHashtag, faCrown, faRibbon } from '@fortawesome/free-solid-svg-icons';
 
 function Search() {
     const [selectedCategory, setSelectedCategory] = useState('');
@@ -61,24 +61,24 @@ function Search() {
                     <Container fluid>
                         <Row className={search.columnRow}>
                             <Col className={`text-center ${search.column}`}>
-                                <FontAwesomeIcon icon={faTools} />
-                                <p>Icon 1</p>
+                                <FontAwesomeIcon icon={faWrench} />
+                                <p>Services</p>
                             </Col>
                             <Col className={`text-center ${search.column}`}>
-                                <FontAwesomeIcon icon={faTools} />
-                                <p>Icon 2</p>
+                                <FontAwesomeIcon icon={faGift} />
+                                <p>Coupons</p>
                             </Col>
                             <Col className={`text-center ${search.column}`}>
-                                <FontAwesomeIcon icon={faTools} />
-                                <p>Icon 3</p>
+                                <FontAwesomeIcon icon={faHashtag} />
+                                <p>Influencer</p>
                             </Col>
                             <Col className={`text-center ${search.column}`}>
-                                <FontAwesomeIcon icon={faTools} />
-                                <p>Icon 4</p>
+                                <FontAwesomeIcon icon={faCrown} />
+                                <p>Clubs</p>
                             </Col>
                             <Col className={`text-center ${search.column}`}>
-                                <FontAwesomeIcon icon={faTools} />
-                                <p>Icon 5</p>
+                                <FontAwesomeIcon icon={faRibbon} />
+                                <p>Cause</p>
                             </Col>
                         </Row>
                     </Container>

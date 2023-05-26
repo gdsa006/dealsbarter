@@ -36,12 +36,14 @@
   
   .imageContainer {
     width: 50%;
+    height: 265px;
   }
   
   .textContainer {
     width: 50%;
     background-color: #ffffff; /* Set the default background color */
     padding: 20px;
+    position: relative;
   }
   
   .image {
@@ -63,4 +65,42 @@
     margin-top: 35px;
   }
   
-  
+  .column .textContainer::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -20px;
+    border: 10px solid #FFF;
+    border-color: transparent #FFF transparent transparent;
+    margin-top: -10px;
+}
+
+.column.reverse .textContainer::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: auto;
+  right: -20px;
+  border: 10px solid #FFF;
+  border-color: transparent #FFF transparent transparent;
+  margin-top: -10px;
+  transform: rotate(180deg);
+}
+
+.column a:hover .textContainer::after{
+  border-color: transparent #F5F5F5 transparent transparent;
+}
+
+.column .textContainer::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 15px;
+  top: 15px;
+  background: transparent url(https://supplier.mercedes-benz.com/themes/dsp-assets/images/img-icons-sprite-reloaded-svg.svg) no-repeat -105px 0;
+  z-index: 90;
+  transform: scale(0.65);
+  transform-origin: top right;
+}

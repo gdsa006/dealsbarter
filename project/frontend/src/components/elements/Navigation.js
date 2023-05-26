@@ -6,6 +6,7 @@ import logo from '../../images/logo.png'; // Import your logo image
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faLock, faEnvelope, faMobile, faSearch } from '@fortawesome/free-solid-svg-icons';
+import PrimaryButton from '../partials/PrimaryButton';
 
 function Navigation() {
 
@@ -77,7 +78,7 @@ function Navigation() {
 
   return (
     <>
-      <Navbar expand="lg" fixed="top" className={`${navigation.navbar} ${isScrolled ? navigation.scrolled : ''}`}>
+      <Navbar expand="lg" fixed="top" className={`${navigation.navbar} ${isScrolled ? navigation.scrolled : ''} ${isScrolled ? navigation.shadow : ''}`}>
         <Navbar.Brand href="#home">
           <img src={logo} alt="Logo" className={navigation.logo} /> {/* Include your logo image here */}
         </Navbar.Brand>
@@ -101,16 +102,14 @@ function Navigation() {
 
 
           <Nav className={`ml-auto ${navigation.navbarNav}`}>
-            <Nav.Link href="#buy" className={navigation.navbarNavNavLink}>Buy</Nav.Link>
-            <Nav.Link href="#sell" className={navigation.navbarNavNavLink}>Sell</Nav.Link>
-            <Nav.Link href="#services" className={navigation.navbarNavNavLink}>Services</Nav.Link>
-            <Nav.Link href="#menu1" className={navigation.navbarNavNavLink}>Menu1</Nav.Link>
-            <Nav.Link href="#menu2" className={navigation.navbarNavNavLink}>Menu2</Nav.Link>
+            <Nav.Link href="#menu2" className={navigation.navbarNavNavLink}><span className={navigation.navbarNavItemContent}>Explore</span></Nav.Link>
+            <Nav.Link><PrimaryButton /></Nav.Link>
             <Dropdown
               show={showDropdown}
               onMouseEnter={handleDropdownMouseEnter}
               onMouseLeave={handleDropdownMouseLeave}
               onClick={handleDropdownToggle}
+              className='hidden d-none'
             >
               <Dropdown.Toggle id="more-dropdown">
                 <FontAwesomeIcon icon={faUser} />

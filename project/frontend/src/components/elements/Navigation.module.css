@@ -41,13 +41,24 @@
   z-index: 9999;
 }
 
+.navbar.shadow{
+  box-shadow: 0 0 11px rgba(0, 0, 0, 0.13);
+}
+
+.navbar.shadow .navbarNavNavLink{
+  color: #333 !important;
+}
+
 .navbarNavNavLink {
-  color: #f0f0f0;
+  color: #d6d6d6 !important;
   font-size: 16px;
   font-weight: 500;
-  text-transform: uppercase;
   margin-right: 20px;
   transition: color 0.3s ease-in-out;
+}
+
+.navbarNavNavLink:hover{
+  color: #ffffff !important;
 }
 
 .navbarNavNavLink:hover {
@@ -317,4 +328,11 @@ button:hover {
 
 .searchButton:hover {
   background-color: #0056b3;
+}
+
+
+.navbarNavItemContent {
+  display: flex;
+  align-items: center;
+  height: 100%;
 }

@@ -16,10 +16,9 @@ function Showcase() {
                   <img src={image1} alt="Image 1" className={showcase.image} />
                 </div>
                 <div className={showcase.textContainer}>
-                  <h3 className={showcase.heading}>Title 1</h3>
+                  <h3 className={showcase.heading}>Professional Services</h3>
                   <p className={showcase.description}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean interdum eros sed urna tristique,
-                    ac ullamcorper mi malesuada. Nullam varius dolor id enim tincidunt, eu ullamcorper lectus lobortis.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                   </p>
                 </div>
               </div>
@@ -33,10 +32,9 @@ function Showcase() {
                   <img src={image2} alt="Image 2" className={showcase.image} />
                 </div>
                 <div className={showcase.textContainer}>
-                  <h3 className={showcase.heading}>Title 2</h3>
+                  <h3 className={showcase.heading}>Products</h3>
                   <p className={showcase.description}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean interdum eros sed urna tristique,
-                    ac ullamcorper mi malesuada. Nullam varius dolor id enim tincidunt, eu ullamcorper lectus lobortis.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                   </p>
                 </div>
               </div>
@@ -50,10 +48,9 @@ function Showcase() {
                   <img src={image3} alt="Image 3" className={showcase.image} />
                 </div>
                 <div className={showcase.textContainer}>
-                  <h3 className={showcase.heading}>Title 3</h3>
+                  <h3 className={showcase.heading}>Health and Wellness</h3>
                   <p className={showcase.description}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean interdum eros sed urna tristique,
-                    ac ullamcorper mi malesuada. Nullam varius dolor id enim tincidunt, eu ullamcorper lectus lobortis.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                   </p>
                 </div>
               </div>
@@ -67,10 +64,9 @@ function Showcase() {
                   <img src={image3} alt="Image 3" className={showcase.image} />
                 </div>
                 <div className={showcase.textContainer}>
-                  <h3 className={showcase.heading}>Title 3</h3>
+                  <h3 className={showcase.heading}>Jobs</h3>
                   <p className={showcase.description}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean interdum eros sed urna tristique,
-                    ac ullamcorper mi malesuada. Nullam varius dolor id enim tincidunt, eu ullamcorper lectus lobortis.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                   </p>
                 </div>
               </div>
@@ -85,10 +81,9 @@ function Showcase() {
                   <img src={image1} alt="Image 1" className={showcase.image} />
                 </div>
                 <div className={showcase.textContainer}>
-                  <h3 className={showcase.heading}>Title 1</h3>
+                  <h3 className={showcase.heading}>Property</h3>
                   <p className={showcase.description}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean interdum eros sed urna tristique,
-                    ac ullamcorper mi malesuada. Nullam varius dolor id enim tincidunt, eu ullamcorper lectus lobortis.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                   </p>
                 </div>
               </div>
@@ -102,10 +97,9 @@ function Showcase() {
                   <img src={image2} alt="Image 2" className={showcase.image} />
                 </div>
                 <div className={showcase.textContainer}>
-                  <h3 className={showcase.heading}>Title 2</h3>
+                  <h3 className={showcase.heading}>Automobiles</h3>
                   <p className={showcase.description}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean interdum eros sed urna tristique,
-                    ac ullamcorper mi malesuada. Nullam varius dolor id enim tincidunt, eu ullamcorper lectus lobortis.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                   </p>
                 </div>
               </div>
