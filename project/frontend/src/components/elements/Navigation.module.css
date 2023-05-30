@@ -30,15 +30,25 @@
 
 
 
+.postadNavbar{
+  background-color: transparent !important;
+}
 
 
+.homepageNavbar{
+  background-color: #0056b3;
+}
 
-
+.navbar.homepageNavbar.shadow .navbarNavNavLink{
+  color: #d6d6d6 !important;
+}
 
 
 .navbar {
   background-color: transparent;
   z-index: 9999;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .navbar.shadow{

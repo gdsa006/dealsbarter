@@ -8,6 +8,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navigation from './components/elements/Navigation';
 import Home from './components/pages/Home';
 import Footer from './components/elements/Footer';
+import AboutUs from './components/pages/AboutUs';
+import PostAd from './components/pages/PostAd';
 
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
           <Routes>
             {/* Define your routes here */}
             <Route path="/" element={<Home />} />
+            <Route path="/about-us/" element={<AboutUs />} />
+            <Route path="/post-ad/" element={<PostAd />} />
           </Routes>
           <Footer />
         </div>

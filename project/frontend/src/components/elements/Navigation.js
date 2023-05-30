@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faLock, faEnvelope, faMobile, faSearch } from '@fortawesome/free-solid-svg-icons';
 import PrimaryButton from '../partials/PrimaryButton';
+import { useLocation } from 'react-router-dom';
 
 function Navigation() {
 
@@ -74,12 +75,17 @@ function Navigation() {
     // Handle register form submission
   };
 
-
-
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+  const isPostAdPage = location.pathname === '/post-ad/';
   return (
     <>
-      <Navbar expand="lg" fixed="top" className={`${navigation.navbar} ${isScrolled ? navigation.scrolled : ''} ${isScrolled ? navigation.shadow : ''}`}>
-        <Navbar.Brand href="#home">
+      <Navbar
+        expand="lg"
+        fixed="top"
+        className={`${navigation.navbar} ${isScrolled ? navigation.scrolled : ''} ${isScrolled ? navigation.shadow : ''
+          } ${!isHomePage ? navigation.homepageNavbar : ''} ${isPostAdPage ? navigation.postadNavbar : ''}`}
+      >        <Navbar.Brand href="/">
           <img src={logo} alt="Logo" className={navigation.logo} /> {/* Include your logo image here */}
         </Navbar.Brand>
 
@@ -87,21 +93,33 @@ function Navigation() {
         <Navbar.Collapse id="basic-navbar-nav">
 
 
-          {isScrolled && (
-            <Nav className={`ml-auto ${navigation.navbarNav}`}>
+          {isScrolled && isHomePage && (
+            <Nav className={`ml-auto ${navigation.navbarNav} ${isPostAdPage ? 'd-none' : ''}`}>
 
-<Form inline className={`${navigation.searchForm} ml-auto`}>
-  <FormControl type="text" placeholder="Search" className={navigation.searchInput} />
-  <Button variant="outline-primary" className={navigation.searchButton}>
-    <FontAwesomeIcon icon={faSearch} />
-  </Button>
-</Form>
+              <Form inline className={`${navigation.searchForm} ml-auto`}>
+                <FormControl type="text" placeholder="Search" className={navigation.searchInput} />
+                <Button variant="outline-primary" className={navigation.searchButton}>
+                  <FontAwesomeIcon icon={faSearch} />
+                </Button>
+              </Form>
             </Nav>
           )}
 
 
+{!isHomePage && (
+            <Nav className={`ml-auto ${navigation.navbarNav} ${isPostAdPage ? 'd-none' : ''}`}>
 
-          <Nav className={`ml-auto ${navigation.navbarNav}`}>
+              <Form inline className={`${navigation.searchForm} ml-auto`}>
+                <FormControl type="text" placeholder="Search" className={navigation.searchInput} />
+                <Button variant="outline-primary" className={navigation.searchButton}>
+                  <FontAwesomeIcon icon={faSearch} />
+                </Button>
+              </Form>
+            </Nav>
+          )}
+          
+
+          <Nav className={`ml-auto ${navigation.navbarNav} ${isPostAdPage ? 'd-none' : ''}`}>
             <Nav.Link href="#menu2" className={navigation.navbarNavNavLink}><span className={navigation.navbarNavItemContent}>Explore</span></Nav.Link>
             <Nav.Link><PrimaryButton /></Nav.Link>
             <Dropdown

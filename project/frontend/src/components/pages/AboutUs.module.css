@@ -1,0 +1,17 @@
+.mySection {
+    padding: 140px 0 70px;
+  }
+
+  .mySection h3{
+    font-size: 24px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px #f5f5f5 solid;  
+    font-weight: bolder;
+    color: #041533;
+  }
+
+  
+  .mySection p{
+    color: #253858;
+  }

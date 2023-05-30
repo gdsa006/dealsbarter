@@ -12,3 +12,11 @@ button:focus {
     /* background-color: #f9f9f9; */
     color: #333;
 }
+
+body {
+  font-family: 'Quicksand', sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Nunito', sans-serif !important;
+}
