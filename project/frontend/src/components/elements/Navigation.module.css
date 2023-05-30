@@ -241,7 +241,7 @@ button {
   text-decoration: underline;
 }
 
-.navbar input,
+#basic-navbar-nav input,
 .popup select,
 .popup button {
   width: 100%;
