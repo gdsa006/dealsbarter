@@ -31,7 +31,12 @@
 
 
 .postadNavbar{
-  background-color: transparent !important;
+  background-color: #fbfbfb !important;
+  position: static !important;
+}
+
+.postadNavbar.shadow{
+  background-color: #ffffff !important;
 }
 
 
@@ -164,7 +169,7 @@
 
 }
 
-form {
+.navbar form {
   /* Add styles for the login/register forms */
 }
 
@@ -190,19 +195,19 @@ button {
   background-color: transparent !important;
 }
 
-.formGroup {
+.navbar .formGroup {
   display: flex;
   align-items: center;
   margin-bottom: 15px;
 }
 
-.formGroup label {
+.navbar .formGroup label {
   margin-right: 10px;
   font-size: 16px;
   color: #3c6baf;
 }
 
-.formGroup input[type=text] {
+.navbar .formGroup input[type=text] {
   flex: 1;
   height: 40px;
   padding: 5px 10px;
@@ -211,7 +216,7 @@ button {
   border-radius: 4px;
 }
 
-.formGroup input:focus {
+.navbar .formGroup input:focus {
   outline: none;
   border-color: #007bff;
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
@@ -236,7 +241,7 @@ button {
   text-decoration: underline;
 }
 
-input,
+.navbar input,
 .popup select,
 .popup button {
   width: 100%;

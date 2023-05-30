@@ -1,0 +1,35 @@
+.shadow {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+    z-index: 10;
+    position: relative;
+}
+
+.form-spacing {
+    margin-bottom: 20px;
+}
+
+.radio-inline label {
+    vertical-align: middle;
+}
+
+
+.dropzone {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.dropzone.active {
+    background-color: #f7f7f7;
+}
+
+.uploadedImage {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+}
