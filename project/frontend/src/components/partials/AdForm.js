@@ -24,10 +24,11 @@ function AdForm() {
     return (
         <Card className={`${adform.shadow} ${adform.card}`}>
             <Card.Body>
+                <h4 className={adform.formTitle}>Ad Form</h4>
                 <Form onSubmit={handleSubmit(onSubmit)} className="form-spacing">
                     <Form.Group className='mb-3' controlId="adTitle">
                         <Form.Label>Ad Title</Form.Label>
-                        <Form.Control type="text" {...register("adTitle", { required: true })} />
+                        <Form.Control placeholder="Enter a title" type="text" {...register("adTitle", { required: true })} />
                     </Form.Group>
 
                     <Form.Group className='mb-3' controlId="offerSeeker">
@@ -39,6 +40,7 @@ function AdForm() {
                                 name="offerSeeker"
                                 label="Offer"
                                 value="offer"
+                                checked
                                 {...register("offerSeeker", { required: true })}
                             />
                             <Form.Check
@@ -68,6 +70,7 @@ function AdForm() {
                                 name="b2bB2c"
                                 label="B2C"
                                 value="b2c"
+                                checked
                                 {...register("b2bB2c", { required: true })}
                             />
                         </div>
@@ -122,37 +125,37 @@ function AdForm() {
 
                     <Form.Group className='mb-3' controlId="adDescription">
                         <Form.Label>Ad Description</Form.Label>
-                        <Form.Control as="textarea" rows={3} {...register("adDescription", { required: true })} />
+                        <Form.Control placeholder="Enter the description of the ad" as="textarea" rows={3} {...register("adDescription", { required: true })} />
                     </Form.Group>
 
 
                     <Form.Group className='mb-3' controlId="barterExchange">
-            <Form.Label>Barter/Exchange</Form.Label>
-            <Row>
-                        <Col>
-                            <Form.Group controlId="category">
-                                <Form.Label>Category</Form.Label>
-                                <Form.Control as="select" {...register("category", { required: true })}>
-                                    <option value="">Select Category</option>
-                                    <option value="category1">Category 1</option>
-                                    <option value="category2">Category 2</option>
-                                    <option value="category3">Category 3</option>
-                                </Form.Control>
-                            </Form.Group>
-                        </Col>
-                        <Col>
-                            <Form.Group controlId="subCategory">
-                                <Form.Label>Sub Category</Form.Label>
-                                <Form.Control as="select" {...register("subCategory", { required: true })}>
-                                    <option value="">Select Sub Category</option>
-                                    <option value="subCategory1">Sub Category 1</option>
-                                    <option value="subCategory2">Sub Category 2</option>
-                                    <option value="subCategory3">Sub Category 3</option>
-                                </Form.Control>
-                            </Form.Group>
-                        </Col>
-                    </Row>
-          </Form.Group>
+                        <Form.Label>Barter/Exchange</Form.Label>
+                        <Row>
+                            <Col>
+                                <Form.Group controlId="category">
+                                    <Form.Label>Category</Form.Label>
+                                    <Form.Control as="select" {...register("category", { required: true })}>
+                                        <option value="">Select Category</option>
+                                        <option value="category1">Category 1</option>
+                                        <option value="category2">Category 2</option>
+                                        <option value="category3">Category 3</option>
+                                    </Form.Control>
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group controlId="subCategory">
+                                    <Form.Label>Sub Category</Form.Label>
+                                    <Form.Control as="select" {...register("subCategory", { required: true })}>
+                                        <option value="">Select Sub Category</option>
+                                        <option value="subCategory1">Sub Category 1</option>
+                                        <option value="subCategory2">Sub Category 2</option>
+                                        <option value="subCategory3">Sub Category 3</option>
+                                    </Form.Control>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                    </Form.Group>
 
                     <Form.Group className='mb-3' controlId="postedBy">
                         <Form.Label>Posted By</Form.Label>
@@ -163,6 +166,7 @@ function AdForm() {
                                 name="postedBy"
                                 label="Owner"
                                 value="owner"
+                                checked
                                 {...register("postedBy", { required: true })}
                             />
                             <Form.Check

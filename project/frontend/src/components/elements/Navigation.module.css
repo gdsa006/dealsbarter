@@ -1,5 +1,119 @@
 /* Navigation.module.css */
 
+/* Navigation.module.css */
+
+/* Styling for the custom scrollbar */
+/* For WebKit based browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d6d6d6;
+}
+
+/* For Firefox */
+/* Note: Firefox currently only supports a limited set of styles for scrollbar customization */
+/* You can adjust the colors and width to fit your design */
+/* This example uses a thin, dark scrollbar with a light track background */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #d6d6d6;
+}
+
+
+.exploreLink .dropdown .dropdownMenu{
+  left: auto !important;
+  right: 0 !important;
+  border-radius: 5px;
+  width: auto;
+  padding: 20px;
+}
+
+.exploreLink .menuCategoryItem{
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.exploreLink .menuCategoryItem .dropdownIcon{
+  padding: 10px 0 5px;
+}
+
+.exploreLink .menuCategoryItem .dropdownIcon img{
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 100%;
+  margin: 0 auto;
+  border: solid 3px #ffffff;
+  box-shadow: 0 0 11px rgba(0, 0, 0, 0.13);
+}
+
+.exploreLink .menuCategoryItem a{
+  color: #333;
+  display: block;
+  padding: 5px;
+}
+
+.exploreLink .menuCategoryItem a:hover{
+  color: #333;
+  background-color: #ffffff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.exploreLink .menuCategoryItem a:hover img{
+  filter: brightness(135%);
+}
+
+.dropdownContentSubTitle h6{
+  position: relative;
+  background-color: #f0f8ff;
+  padding: 6px 5px;
+}
+
+
+
+
+.dropdownLeft {
+  left: 0;
+}
+
+.dropdownMenu {
+  min-width: 800px; /* Adjust the width as needed */
+  min-height: 300px;
+  height: 400px;
+  overflow-y: scroll;
+}
+
+
+
+.dropdownContent {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.menuCategoryItem {
+  flex-basis: 33.33%; /* Adjust the column width as needed */
+}
+
+
 .dropdown-menu {
   opacity: 0;
   transform: translateY(-10px);
@@ -70,6 +184,21 @@
   font-weight: 500;
   margin-right: 20px;
   transition: color 0.3s ease-in-out;
+}
+
+.postAdPage{
+  z-index: 9999;
+}
+
+.postadNavbar .logo {
+position: relative;
+z-index: 999;
+}
+
+
+.postAdPage .navbarNavNavLink{
+  color: #007bff !important;
+  padding: 25px 0;
 }
 
 .navbarNavNavLink:hover{
@@ -351,3 +480,22 @@ button:hover {
   align-items: center;
   height: 100%;
 }
+
+.NavLinkActive{
+  position: relative;
+}
+
+.NavLinkActive span{
+  color: #ffffff !important;
+}
+
+.NavLinkActive::after{
+  content: '>';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  color: #ffffff;
+  transform: translateX(-50%) rotate(90deg);
+  font-family: monospace;
+}
+

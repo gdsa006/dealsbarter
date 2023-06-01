@@ -3,6 +3,7 @@ import showcase from './Showcase.module.css';
 import image1 from '../../images/wideImage.jpg'; // Import your first image
 import image2 from '../../images/wideImage.jpg'; // Import your second image
 import image3 from '../../images/wideImage.jpg'; // Import your third image
+import CategoryImage from '../../images/pexels-photo-1547248.webp'; // Import your logo image
 
 function Showcase() {
   return (
@@ -13,7 +14,7 @@ function Showcase() {
             <a href="#" className={showcase.clickableColumn}>
               <div className={showcase.subColumn}>
                 <div className={showcase.imageContainer}>
-                  <img src={image1} alt="Image 1" className={showcase.image} />
+                  <img src={CategoryImage} alt="Image 1" className={showcase.image} />
                 </div>
                 <div className={showcase.textContainer}>
                   <h3 className={showcase.heading}>Professional Services</h3>
@@ -29,7 +30,7 @@ function Showcase() {
             <a href="#" className={showcase.clickableColumn}>
               <div className={showcase.subColumn}>
                 <div className={showcase.imageContainer}>
-                  <img src={image2} alt="Image 2" className={showcase.image} />
+                  <img src={CategoryImage} alt="Image 2" className={showcase.image} />
                 </div>
                 <div className={showcase.textContainer}>
                   <h3 className={showcase.heading}>Products</h3>
@@ -45,7 +46,7 @@ function Showcase() {
             <a href="#" className={showcase.clickableColumn}>
               <div className={showcase.subColumn}>
                 <div className={showcase.imageContainer}>
-                  <img src={image3} alt="Image 3" className={showcase.image} />
+                  <img src={CategoryImage} alt="Image 3" className={showcase.image} />
                 </div>
                 <div className={showcase.textContainer}>
                   <h3 className={showcase.heading}>Health and Wellness</h3>
@@ -61,7 +62,7 @@ function Showcase() {
             <a href="#" className={showcase.clickableColumn}>
               <div className={showcase.subColumn}>
                 <div className={showcase.imageContainer}>
-                  <img src={image3} alt="Image 3" className={showcase.image} />
+                  <img src={CategoryImage} alt="Image 3" className={showcase.image} />
                 </div>
                 <div className={showcase.textContainer}>
                   <h3 className={showcase.heading}>Jobs</h3>
@@ -78,7 +79,7 @@ function Showcase() {
             <a href="#" className={showcase.clickableColumn}>
               <div className={showcase.subColumn}>
                 <div className={showcase.imageContainer}>
-                  <img src={image1} alt="Image 1" className={showcase.image} />
+                  <img src={CategoryImage} alt="Image 1" className={showcase.image} />
                 </div>
                 <div className={showcase.textContainer}>
                   <h3 className={showcase.heading}>Property</h3>
@@ -94,7 +95,7 @@ function Showcase() {
             <a href="#" className={showcase.clickableColumn}>
               <div className={showcase.subColumn}>
                 <div className={showcase.imageContainer}>
-                  <img src={image2} alt="Image 2" className={showcase.image} />
+                  <img src={CategoryImage} alt="Image 2" className={showcase.image} />
                 </div>
                 <div className={showcase.textContainer}>
                   <h3 className={showcase.heading}>Automobiles</h3>

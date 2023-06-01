@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Navbar, Nav, Dropdown, Form, FormControl, Button } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { CSSTransition } from 'react-transition-group';
 import navigation from './Navigation.module.css';
 import logo from '../../images/logo.png'; // Import your logo image
@@ -8,6 +9,8 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faLock, faEnvelope, faMobile, faSearch } from '@fortawesome/free-solid-svg-icons';
 import PrimaryButton from '../partials/PrimaryButton';
 import { useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import CategoryImage from '../../images/pexels-photo-1547248.webp'; // Import your logo image
 
 function Navigation() {
 
@@ -106,7 +109,7 @@ function Navigation() {
           )}
 
 
-{!isHomePage && (
+          {!isHomePage && (
             <Nav className={`ml-auto ${navigation.navbarNav} ${isPostAdPage ? 'd-none' : ''}`}>
 
               <Form inline className={`${navigation.searchForm} ml-auto`}>
@@ -117,11 +120,351 @@ function Navigation() {
               </Form>
             </Nav>
           )}
-          
 
-          <Nav className={`ml-auto ${navigation.navbarNav} ${isPostAdPage ? 'd-none' : ''}`}>
-            <Nav.Link href="#menu2" className={navigation.navbarNavNavLink}><span className={navigation.navbarNavItemContent}>Explore</span></Nav.Link>
-            <Nav.Link><PrimaryButton /></Nav.Link>
+
+          <Nav className={`ml-auto ${navigation.navbarNav} ${isPostAdPage ? navigation.postAdPage : ''}`}>
+
+            {/* <Nav.Link href="#menu2" className={navigation.navbarNavNavLink}><span className={navigation.navbarNavItemContent}>Explore</span></Nav.Link> */}
+            <Nav.Link
+              onMouseEnter={handleDropdownMouseEnter}
+              onMouseLeave={handleDropdownMouseLeave}
+              className={`${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showDropdown ? navigation.NavLinkActive : ''}`}
+            >
+              <span className={navigation.navbarNavItemContent}>Explore</span>
+              {showDropdown && (
+                <Dropdown
+                  show={showDropdown}
+                  onMouseEnter={handleDropdownMouseEnter}
+                  onMouseLeave={handleDropdownMouseLeave}
+                  onClick={handleDropdownToggle}
+                  className={`${navigation.dropdown} ${navigation.dropdownLeft}`}
+                >
+                  <Dropdown.Menu className={navigation.dropdownMenu}>
+                    <div className={navigation.dropdownContent}>
+
+                      <Row>
+                        <Col md={6}>
+                          <Row className='mb-3'>
+                            <Col md={12} className='text-center'>
+                              <h5>Services</h5>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col md={12} className={` ${navigation.dropdownContentSubTitle} `}>
+                              <h6>Health & Wellness</h6>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col md={4}>
+                              <div className={navigation.menuCategoryItem}>
+                                <Link to="/category1">
+                                  <div className={navigation.dropdownIcon}>
+                                    <img src={CategoryImage} alt="Category 1" />
+                                  </div>
+                                  <div className={navigation.dropdownCategory}>
+                                    Category 1
+                                  </div>
+                                </Link>
+                              </div>
+                            </Col>
+
+                            <Col md={4}>
+                              <div className={navigation.menuCategoryItem}>
+                                <Link to="/category1">
+                                  <div className={navigation.dropdownIcon}>
+                                    <img src={CategoryImage} alt="Category 1" />
+                                  </div>
+                                  <div className={navigation.dropdownCategory}>
+                                    Category 1
+                                  </div>
+                                </Link>
+                              </div>
+                            </Col>
+
+                            <Col md={4}>
+                              <div className={navigation.menuCategoryItem}>
+                                <Link to="/category1">
+                                  <div className={navigation.dropdownIcon}>
+                                    <img src={CategoryImage} alt="Category 1" />
+                                  </div>
+                                  <div className={navigation.dropdownCategory}>
+                                    Category 1
+                                  </div>
+                                </Link>
+                              </div>
+                            </Col>
+
+                            <Col md={4}>
+                              <div className={navigation.menuCategoryItem}>
+                                <Link to="/category1">
+                                  <div className={navigation.dropdownIcon}>
+                                    <img src={CategoryImage} alt="Category 1" />
+                                  </div>
+                                  <div className={navigation.dropdownCategory}>
+                                    Category 1
+                                  </div>
+                                </Link>
+                              </div>
+                            </Col>
+
+                            <Col md={4}>
+                              <div className={navigation.menuCategoryItem}>
+                                <Link to="/category1">
+                                  <div className={navigation.dropdownIcon}>
+                                    <img src={CategoryImage} alt="Category 1" />
+                                  </div>
+                                  <div className={navigation.dropdownCategory}>
+                                    Category 1
+                                  </div>
+                                </Link>
+                              </div>
+                            </Col>
+
+                            <Col md={4}>
+                              <div className={navigation.menuCategoryItem}>
+                                <Link to="/category1">
+                                  <div className={navigation.dropdownIcon}>
+                                    <img src={CategoryImage} alt="Category 1" />
+                                  </div>
+                                  <div className={navigation.dropdownCategory}>
+                                    Category 1
+                                  </div>
+                                </Link>
+                              </div>
+                            </Col>
+
+                            <Col md={4}>
+                              <div className={navigation.menuCategoryItem}>
+                                <Link to="/category1">
+                                  <div className={navigation.dropdownIcon}>
+                                    <img src={CategoryImage} alt="Category 1" />
+                                  </div>
+                                  <div className={navigation.dropdownCategory}>
+                                    Category 1
+                                  </div>
+                                </Link>
+                              </div>
+                            </Col>
+
+                            <Col md={4}>
+                              <div className={navigation.menuCategoryItem}>
+                                <Link to="/category1">
+                                  <div className={navigation.dropdownIcon}>
+                                    <img src={CategoryImage} alt="Category 1" />
+                                  </div>
+                                  <div className={navigation.dropdownCategory}>
+                                    Category 1
+                                  </div>
+                                </Link>
+                              </div>
+                            </Col>
+
+                            <Col md={4}>
+                              <div className={navigation.menuCategoryItem}>
+                                <Link to="/category1">
+                                  <div className={navigation.dropdownIcon}>
+                                    <img src={CategoryImage} alt="Category 1" />
+                                  </div>
+                                  <div className={navigation.dropdownCategory}>
+                                    Category 1
+                                  </div>
+                                </Link>
+                              </div>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col md={12} className={` ${navigation.dropdownContentSubTitle} `}>
+                              <h6>Education</h6>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col md={4}>
+                              <div className={navigation.menuCategoryItem}>
+                                <Link to="/category1">
+                                  <div className={navigation.dropdownIcon}>
+                                    <img src={CategoryImage} alt="Category 1" />
+                                  </div>
+                                  <div className={navigation.dropdownCategory}>
+                                    Category 1
+                                  </div>
+                                </Link>
+                              </div>
+                            </Col>
+                            </Row>
+                        </Col>
+
+
+
+
+
+
+                        <Col md={6}>
+                          <Row className='mb-3'>
+                            <Col md={12} className='text-center'>
+                              <h5>Products</h5>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col md={12} className={` ${navigation.dropdownContentSubTitle} `}>
+                              <h6>Electronic</h6>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col md={4}>
+                              <div className={navigation.menuCategoryItem}>
+                                <Link to="/category1">
+                                  <div className={navigation.dropdownIcon}>
+                                    <img src={CategoryImage} alt="Category 1" />
+                                  </div>
+                                  <div className={navigation.dropdownCategory}>
+                                    Category 1
+                                  </div>
+                                </Link>
+                              </div>
+                            </Col>
+
+                            <Col md={4}>
+                              <div className={navigation.menuCategoryItem}>
+                                <Link to="/category1">
+                                  <div className={navigation.dropdownIcon}>
+                                    <img src={CategoryImage} alt="Category 1" />
+                                  </div>
+                                  <div className={navigation.dropdownCategory}>
+                                    Category 1
+                                  </div>
+                                </Link>
+                              </div>
+                            </Col>
+
+                            <Col md={4}>
+                              <div className={navigation.menuCategoryItem}>
+                                <Link to="/category1">
+                                  <div className={navigation.dropdownIcon}>
+                                    <img src={CategoryImage} alt="Category 1" />
+                                  </div>
+                                  <div className={navigation.dropdownCategory}>
+                                    Category 1
+                                  </div>
+                                </Link>
+                              </div>
+                            </Col>
+
+                            <Col md={4}>
+                              <div className={navigation.menuCategoryItem}>
+                                <Link to="/category1">
+                                  <div className={navigation.dropdownIcon}>
+                                    <img src={CategoryImage} alt="Category 1" />
+                                  </div>
+                                  <div className={navigation.dropdownCategory}>
+                                    Category 1
+                                  </div>
+                                </Link>
+                              </div>
+                            </Col>
+
+                            <Col md={4}>
+                              <div className={navigation.menuCategoryItem}>
+                                <Link to="/category1">
+                                  <div className={navigation.dropdownIcon}>
+                                    <img src={CategoryImage} alt="Category 1" />
+                                  </div>
+                                  <div className={navigation.dropdownCategory}>
+                                    Category 1
+                                  </div>
+                                </Link>
+                              </div>
+                            </Col>
+
+                            <Col md={4}>
+                              <div className={navigation.menuCategoryItem}>
+                                <Link to="/category1">
+                                  <div className={navigation.dropdownIcon}>
+                                    <img src={CategoryImage} alt="Category 1" />
+                                  </div>
+                                  <div className={navigation.dropdownCategory}>
+                                    Category 1
+                                  </div>
+                                </Link>
+                              </div>
+                            </Col>
+
+                            <Col md={4}>
+                              <div className={navigation.menuCategoryItem}>
+                                <Link to="/category1">
+                                  <div className={navigation.dropdownIcon}>
+                                    <img src={CategoryImage} alt="Category 1" />
+                                  </div>
+                                  <div className={navigation.dropdownCategory}>
+                                    Category 1
+                                  </div>
+                                </Link>
+                              </div>
+                            </Col>
+
+                            <Col md={4}>
+                              <div className={navigation.menuCategoryItem}>
+                                <Link to="/category1">
+                                  <div className={navigation.dropdownIcon}>
+                                    <img src={CategoryImage} alt="Category 1" />
+                                  </div>
+                                  <div className={navigation.dropdownCategory}>
+                                    Category 1
+                                  </div>
+                                </Link>
+                              </div>
+                            </Col>
+
+                            <Col md={4}>
+                              <div className={navigation.menuCategoryItem}>
+                                <Link to="/category1">
+                                  <div className={navigation.dropdownIcon}>
+                                    <img src={CategoryImage} alt="Category 1" />
+                                  </div>
+                                  <div className={navigation.dropdownCategory}>
+                                    Category 1
+                                  </div>
+                                </Link>
+                              </div>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col md={12} className={` ${navigation.dropdownContentSubTitle} `}>
+                              <h6>Furniture</h6>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col md={4}>
+                              <div className={navigation.menuCategoryItem}>
+                                <Link to="/category1">
+                                  <div className={navigation.dropdownIcon}>
+                                    <img src={CategoryImage} alt="Category 1" />
+                                  </div>
+                                  <div className={navigation.dropdownCategory}>
+                                    Category 1
+                                  </div>
+                                </Link>
+                              </div>
+                            </Col>
+                            </Row>
+                        </Col>
+
+
+                      </Row>
+
+
+
+
+
+
+
+
+                      
+                    </div>
+                  </Dropdown.Menu>
+                </Dropdown>
+              )}
+            </Nav.Link>
+            <Nav.Link className={` ${isPostAdPage ? 'd-none' : ''} `}><PrimaryButton /></Nav.Link>
             <Dropdown
               show={showDropdown}
               onMouseEnter={handleDropdownMouseEnter}
@@ -145,10 +488,8 @@ function Navigation() {
               </CSSTransition>
             </Dropdown>
           </Nav>
-
         </Navbar.Collapse>
       </Navbar>
-
       {showPopup && (
         <div className={navigation.popup}>
           <div className={navigation.popupContent}>

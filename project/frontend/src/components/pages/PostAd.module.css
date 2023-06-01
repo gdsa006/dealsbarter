@@ -92,9 +92,11 @@
 
     .postAd h1 span{
         font-weight: 900;
+        text-align: center;
     }
 
     .postAd h5{
         color:#389af3;
         margin-bottom: 30px;    
+        text-align: center;
     }
