@@ -434,6 +434,10 @@ button:hover {
   position: relative;
 }
 
+.NavLinkActive i{
+  color: #ffffff;
+}
+
 .NavLinkActive span{
   color: #ffffff !important;
 }

@@ -32,7 +32,7 @@ function Navigation() {
   const handleExploreClick = () => {
     setShowExploreDropdown(!showExploreDropdown);
   };
-  
+
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
   let timeoutRef = null;
@@ -148,63 +148,67 @@ function Navigation() {
 
 
             <Nav.Link
-        onClick={handleExploreClick}
-        className={`${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''}`}
-      >
-<span className={navigation.navbarNavItemContent}>Explore</span>      </Nav.Link>
+              onClick={handleExploreClick}
+              className={`${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''}`}
+            >
+              <span className={navigation.navbarNavItemContent}>Explore</span>
+            </Nav.Link>
 
-      {showExploreDropdown && (
-        <Dropdown.Menu
-  show={showExploreDropdown}
-  align="end"
-  drop="down"
-  style={{ left: 'auto', right: 'auto', marginLeft: '-42px' }}
-  menuProps={{ style: { left: 'auto' } }}
->          <Dropdown.Item disabled className='d-none'>Categories</Dropdown.Item>
-          {!selectedCategory && (
-            <>
-              <Dropdown.Item onClick={() => handleCategoryClick('Products')}>
-                Products
-              </Dropdown.Item>
-              <Dropdown.Item onClick={() => handleCategoryClick('Services')}>
-                Services
-              </Dropdown.Item>
-            </>
-          )}
-          {selectedCategory && (
-            <>
-              <Dropdown.Item onClick={handleBackButtonClick}>
-                <FontAwesomeIcon icon={faAngleLeft} /> Back to Categories
-              </Dropdown.Item>
-              {selectedCategory === 'Services' && (
-                <>
-                  <Dropdown.Item>Health & Wellness</Dropdown.Item>
-                  <Dropdown.Item>Immigration Services</Dropdown.Item>
-                  <Dropdown.Item>Finance</Dropdown.Item>
-                  <Dropdown.Item>Professional Services</Dropdown.Item>
-                  <Dropdown.Item>Education</Dropdown.Item>
-                  <Dropdown.Item>Sports & Games</Dropdown.Item>
-                  <Dropdown.Item>Repair</Dropdown.Item>
+            {showExploreDropdown && (
+              <Dropdown.Menu
+                show={showExploreDropdown}
+                align="end"
+                drop="down"
+                style={{ left: 'auto', right: 'auto', marginLeft: '-42px' }}
+                menuProps={{ style: { left: 'auto' } }}
+              >          <Dropdown.Item disabled className='d-none'>Categories</Dropdown.Item>
+                {!selectedCategory && (
+                  <>
+                    <Dropdown.Item onClick={() => handleCategoryClick('Products')}>
+                      Products
+                    </Dropdown.Item>
+                    <Dropdown.Item onClick={() => handleCategoryClick('Services')}>
+                      Services
+                    </Dropdown.Item>
+                  </>
+                )}
+                {selectedCategory && (
+                  <>
+                    <Dropdown.Item onClick={handleBackButtonClick}>
+                      <FontAwesomeIcon icon={faAngleLeft} /> Back to Categories
+                    </Dropdown.Item>
+                    {selectedCategory === 'Services' && (
+                      <>
+                        <Dropdown.Item>Health & Wellness</Dropdown.Item>
+                        <Dropdown.Item>Immigration Services</Dropdown.Item>
+                        <Dropdown.Item>Finance</Dropdown.Item>
+                        <Dropdown.Item>Professional Services</Dropdown.Item>
+                        <Dropdown.Item>Education</Dropdown.Item>
+                        <Dropdown.Item>Sports & Games</Dropdown.Item>
+                        <Dropdown.Item>Repair</Dropdown.Item>
 
-                  {/* Add more product items */}
-                </>
-              )}
-              {selectedCategory === 'Products' && (
-                <>
-                  <Dropdown.Item>Electronic</Dropdown.Item>
-                  <Dropdown.Item>Furniture</Dropdown.Item>
-                  <Dropdown.Item>Household</Dropdown.Item>
-                  <Dropdown.Item>Fitness & Sports</Dropdown.Item>
-                  <Dropdown.Item>Automobiles</Dropdown.Item>
-                  <Dropdown.Item>Property</Dropdown.Item>
-                  {/* Add more service items */}
-                </>
-              )}
-            </>
-          )}
-        </Dropdown.Menu>
-      )}
+                        {/* Add more product items */}
+                      </>
+                    )}
+                    {selectedCategory === 'Products' && (
+                      <>
+                        <Dropdown.Item>Electronic</Dropdown.Item>
+                        <Dropdown.Item>Furniture</Dropdown.Item>
+                        <Dropdown.Item>Household</Dropdown.Item>
+                        <Dropdown.Item>Fitness & Sports</Dropdown.Item>
+                        <Dropdown.Item>Automobiles</Dropdown.Item>
+                        <Dropdown.Item>Property</Dropdown.Item>
+                        {/* Add more service items */}
+                      </>
+                    )}
+                  </>
+                )}
+              </Dropdown.Menu>
+            )}
 
+<Nav.Link as={Link} to="/login" className={`${navigation.navbarNavNavLink} ${navigation.exploreLink}`}>
+              <span className={navigation.navbarNavItemContent}><FontAwesomeIcon icon={faUser} /></span>
+            </Nav.Link>
 
             <Nav.Link className={` ${isPostAdPage ? 'd-none' : ''} `}><PrimaryButton /></Nav.Link>
             <Dropdown
@@ -229,105 +233,110 @@ function Navigation() {
                 </Dropdown.Menu>
               </CSSTransition>
             </Dropdown>
+
+
+            
+
+
           </Nav>
         </Navbar.Collapse>
       </Navbar>
 
 
-          {showPopup && (
-            <div className={navigation.popup}>
-              <div className={navigation.popupContent}>
-                <button className={navigation.closeButton} onClick={closePopup}>
-                  &times;
-                </button>
-                <div className={navigation.tabButtons}>
-                  <button
-                    className={`${navigation.tabButton} ${activeTab === 'login' ? navigation.activeTab : ''}`}
-                    onClick={() => switchTab('login')}
-                  >
+      {showPopup && (
+        <div className={navigation.popup}>
+          <div className={navigation.popupContent}>
+            <button className={navigation.closeButton} onClick={closePopup}>
+              &times;
+            </button>
+            <div className={navigation.tabButtons}>
+              <button
+                className={`${navigation.tabButton} ${activeTab === 'login' ? navigation.activeTab : ''}`}
+                onClick={() => switchTab('login')}
+              >
+                Login
+              </button>
+              <button
+                className={`${navigation.tabButton} ${activeTab === 'register' ? navigation.activeTab : ''}`}
+                onClick={() => switchTab('register')}
+              >
+                Register
+              </button>
+            </div>
+            <div className={navigation.tabContent}>
+              {activeTab === 'login' && (
+                <form onSubmit={handleLoginSubmit}>
+                  <div className={navigation.formGroup}>
+                    <label htmlFor="login-email">
+                      <FontAwesomeIcon icon={faEnvelope} />
+                    </label>
+                    <input
+                      type="text"
+                      id="login-email"
+                      placeholder="Email/Mobile"
+                      required
+                    />
+                  </div>
+                  <div className={navigation.formGroup}>
+                    <label htmlFor="login-password">
+                      <FontAwesomeIcon icon={faLock} />
+                    </label>
+                    <input
+                      type="password"
+                      id="login-password"
+                      placeholder="Password"
+                      required
+                    />
+                  </div>
+                  <div className={navigation.formGroup}>
+                    <div className={navigation.rememberMeContainer}>
+                      <input type="checkbox" id="rememberMe" />
+                      <label htmlFor="rememberMe">Remember me</label>
+                    </div>
+                    <a href="#" className={navigation.forgotPasswordLink}>Forgot password?</a>
+                  </div>
+                  <button type="submit" className={navigation.formButton}>
                     Login
                   </button>
-                  <button
-                    className={`${navigation.tabButton} ${activeTab === 'register' ? navigation.activeTab : ''}`}
-                    onClick={() => switchTab('register')}
-                  >
+                </form>
+              )}
+              {activeTab === 'register' && (
+                <form onSubmit={handleRegisterSubmit}>
+                  <div className={navigation.formGroup}>
+                    <label htmlFor="registerName">
+                      <FontAwesomeIcon icon={faUser} />
+                    </label>
+                    <input type="text" id="registerName" placeholder="Name" required />
+                  </div>
+                  <div className={navigation.formGroup}>
+                    <label htmlFor="registerEmail">
+                      <FontAwesomeIcon icon={faEnvelope} />
+                    </label>
+                    <input type="email" id="registerEmail" placeholder="Email" required />
+                  </div>
+                  <div className={navigation.formGroup}>
+                    <label htmlFor="registerPassword">
+                      <FontAwesomeIcon icon={faLock} />
+                    </label>
+                    <input type="password" id="registerPassword" placeholder="Password" required />
+                  </div>
+                  <div className={navigation.formGroup}>
+                    <label htmlFor="registerPhone">
+                      <FontAwesomeIcon icon={faMobile} />
+                    </label>
+                    <input type="tel" id="registerPhone" placeholder="Phone" required />
+                  </div>
+                  <button type="submit" className={navigation.formButton}>
                     Register
                   </button>
-                </div>
-                <div className={navigation.tabContent}>
-                  {activeTab === 'login' && (
-                    <form onSubmit={handleLoginSubmit}>
-                      <div className={navigation.formGroup}>
-                        <label htmlFor="login-email">
-                          <FontAwesomeIcon icon={faEnvelope} />
-                        </label>
-                        <input
-                          type="text"
-                          id="login-email"
-                          placeholder="Email/Mobile"
-                          required
-                        />
-                      </div>
-                      <div className={navigation.formGroup}>
-                        <label htmlFor="login-password">
-                          <FontAwesomeIcon icon={faLock} />
-                        </label>
-                        <input
-                          type="password"
-                          id="login-password"
-                          placeholder="Password"
-                          required
-                        />
-                      </div>
-                      <div className={navigation.formGroup}>
-                        <div className={navigation.rememberMeContainer}>
-                          <input type="checkbox" id="rememberMe" />
-                          <label htmlFor="rememberMe">Remember me</label>
-                        </div>
-                        <a href="#" className={navigation.forgotPasswordLink}>Forgot password?</a>
-                      </div>
-                      <button type="submit" className={navigation.formButton}>
-                        Login
-                      </button>
-                    </form>
-                  )}
-                  {activeTab === 'register' && (
-                    <form onSubmit={handleRegisterSubmit}>
-                      <div className={navigation.formGroup}>
-                        <label htmlFor="registerName">
-                          <FontAwesomeIcon icon={faUser} />
-                        </label>
-                        <input type="text" id="registerName" placeholder="Name" required />
-                      </div>
-                      <div className={navigation.formGroup}>
-                        <label htmlFor="registerEmail">
-                          <FontAwesomeIcon icon={faEnvelope} />
-                        </label>
-                        <input type="email" id="registerEmail" placeholder="Email" required />
-                      </div>
-                      <div className={navigation.formGroup}>
-                        <label htmlFor="registerPassword">
-                          <FontAwesomeIcon icon={faLock} />
-                        </label>
-                        <input type="password" id="registerPassword" placeholder="Password" required />
-                      </div>
-                      <div className={navigation.formGroup}>
-                        <label htmlFor="registerPhone">
-                          <FontAwesomeIcon icon={faMobile} />
-                        </label>
-                        <input type="tel" id="registerPhone" placeholder="Phone" required />
-                      </div>
-                      <button type="submit" className={navigation.formButton}>
-                        Register
-                      </button>
-                    </form>
-                  )}
-                </div>
-              </div>
+                </form>
+              )}
             </div>
-          )}
-        </>
-      );
+          </div>
+        </div>
+      )}
+    </>
+  );
 }
 
-      export default Navigation;
+export default Navigation;

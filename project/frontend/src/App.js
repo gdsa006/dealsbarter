@@ -10,6 +10,7 @@ import Home from './components/pages/Home';
 import Footer from './components/elements/Footer';
 import AboutUs from './components/pages/AboutUs';
 import PostAd from './components/pages/PostAd';
+import ContactUs from './components/pages/ContactUs';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
             {/* Define your routes here */}
             <Route path="/" element={<Home />} />
             <Route path="/about-us/" element={<AboutUs />} />
+            <Route path="/contact-us/" element={<ContactUs />} />
             <Route path="/post-ad/" element={<PostAd />} />
           </Routes>
           <Footer />
