@@ -130,7 +130,7 @@ function AdForm() {
 
 
                     <Form.Group className='mb-3' controlId="barterExchange">
-                        <Form.Label>Barter/Exchange</Form.Label>
+                        <Form.Label>Barter/Exchange with</Form.Label>
                         <Row>
                             <Col>
                                 <Form.Group controlId="category">

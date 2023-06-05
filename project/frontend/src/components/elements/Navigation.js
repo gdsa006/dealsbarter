@@ -8,13 +8,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faLock, faEnvelope, faMobile, faSearch, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import PrimaryButton from '../partials/PrimaryButton';
-import { useLocation } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import CategoryImage from '../../images/pexels-photo-1547248.webp'; // Import your logo image
 
 function Navigation() {
-
-
   const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [showExploreDropdown, setShowExploreDropdown] = useState(false);
@@ -30,11 +27,13 @@ function Navigation() {
   };
 
   const handleExploreClick = () => {
-    setShowExploreDropdown(!showExploreDropdown);
+    setShowExploreDropdown((prevValue) => !prevValue);
   };
+  
 
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
+  const exploreDropdownRef = useRef(null);
   let timeoutRef = null;
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -51,12 +50,41 @@ function Navigation() {
         setIsScrolled(false);
       }
     };
+    
 
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    const handleDocumentClick = (event) => {
+      if (
+        !event.target.classList.contains(navigation.exploreLink) &&
+        !event.target.closest(`.${navigation.exploreLink}`) &&
+        !event.target.classList.contains('dropdown-item')
+      ) {
+        setShowExploreDropdown(false);
+      }
+    };
+
+    const handleWindowScroll = () => {
+      setShowExploreDropdown(false);
+    };
+  
+    document.addEventListener('click', handleDocumentClick);
+    window.addEventListener('scroll', handleWindowScroll);
+
+    return () => {
+      document.removeEventListener('click', handleDocumentClick);
+      window.removeEventListener('scroll', handleWindowScroll);
+    };
+  }, []);
+  
+  
+  
+
 
   const handleDropdownToggle = () => {
     clearTimeout(timeoutRef);
@@ -100,24 +128,36 @@ function Navigation() {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const isPostAdPage = location.pathname === '/post-ad/';
+
   return (
     <>
       <Navbar
         expand="lg"
         fixed="top"
-        className={`${navigation.navbar} ${isScrolled ? navigation.scrolled : ''} ${isScrolled ? navigation.shadow : ''
-          } ${!isHomePage ? navigation.homepageNavbar : ''} ${isPostAdPage ? navigation.postadNavbar : ''}`}
-      >        <Navbar.Brand href="/">
-          <img src={logo} alt="Logo" className={navigation.logo} /> {/* Include your logo image here */}
+        className={`${navigation.navbar} ${isScrolled ? navigation.scrolled : ''} ${
+          isScrolled ? navigation.shadow : ''
+        } ${!isHomePage ? navigation.homepageNavbar : ''} ${isPostAdPage ? navigation.postadNavbar : ''}`}
+      >
+        <Navbar.Brand href="/">
+          {!isScrolled ? 
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" width="280" height="50">
+  <text x="0" y="37" font-family="Montserrat, Arial, sans-serif" font-size="30" font-weight="bold" fill="#ffffff">dealsBarter.com</text>
+</svg>
+:
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" width="280" height="50">
+  <text x="0" y="37" font-family="Montserrat, Arial, sans-serif" font-size="30" font-weight="bold" fill="#2c8cf4">dealsBarter.com</text>
+</svg>
+}
+
+
+
+          {/* <img src={logo} alt="Logo" className={navigation.logo} /> Include your logo image here */}
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-
-
-          {isScrolled && isHomePage && (
-            <Nav className={`ml-auto ${navigation.navbarNav} ${isPostAdPage ? 'd-none' : ''}`}>
-
+          {(isScrolled || !isHomePage) && (
+            <Nav className={`ml-auto ${navigation.navbarNav} ${isPostAdPage ? '' : ''}`}>
               <Form inline className={`${navigation.searchForm} ml-auto`}>
                 <FormControl type="text" placeholder="Search" className={navigation.searchInput} />
                 <Button variant="outline-primary" className={navigation.searchButton}>
@@ -126,30 +166,13 @@ function Navigation() {
               </Form>
             </Nav>
           )}
-
-
-          {!isHomePage && (
-            <Nav className={`ml-auto ${navigation.navbarNav} ${isPostAdPage ? 'd-none' : ''}`}>
-
-              <Form inline className={`${navigation.searchForm} ml-auto`}>
-                <FormControl type="text" placeholder="Search" className={navigation.searchInput} />
-                <Button variant="outline-primary" className={navigation.searchButton}>
-                  <FontAwesomeIcon icon={faSearch} />
-                </Button>
-              </Form>
-            </Nav>
-          )}
-
 
           <Nav className={`ml-auto ${navigation.navbarNav} ${isPostAdPage ? navigation.postAdPage : ''}`}>
-
-            {/* <Nav.Link href="#menu2" className={navigation.navbarNavNavLink}><span className={navigation.navbarNavItemContent}>Explore</span></Nav.Link> */}
-
-
-
             <Nav.Link
               onClick={handleExploreClick}
-              className={`${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''}`}
+              className={`${navigation.navbarNavNavLink} ${navigation.exploreLink} ${
+                showExploreDropdown ? navigation.NavLinkActive : ''
+              }`}
             >
               <span className={navigation.navbarNavItemContent}>Explore</span>
             </Nav.Link>
@@ -161,15 +184,14 @@ function Navigation() {
                 drop="down"
                 style={{ left: 'auto', right: 'auto', marginLeft: '-42px' }}
                 menuProps={{ style: { left: 'auto' } }}
-              >          <Dropdown.Item disabled className='d-none'>Categories</Dropdown.Item>
+              >
+                <Dropdown.Item disabled className="d-none">
+                  Categories
+                </Dropdown.Item>
                 {!selectedCategory && (
                   <>
-                    <Dropdown.Item onClick={() => handleCategoryClick('Products')}>
-                      Products
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick={() => handleCategoryClick('Services')}>
-                      Services
-                    </Dropdown.Item>
+                    <Dropdown.Item onClick={() => handleCategoryClick('Products')}>Products</Dropdown.Item>
+                    <Dropdown.Item onClick={() => handleCategoryClick('Services')}>Services</Dropdown.Item>
                   </>
                 )}
                 {selectedCategory && (
@@ -186,7 +208,6 @@ function Navigation() {
                         <Dropdown.Item>Education</Dropdown.Item>
                         <Dropdown.Item>Sports & Games</Dropdown.Item>
                         <Dropdown.Item>Repair</Dropdown.Item>
-
                         {/* Add more product items */}
                       </>
                     )}
@@ -206,17 +227,22 @@ function Navigation() {
               </Dropdown.Menu>
             )}
 
-<Nav.Link as={Link} to="/login" className={`${navigation.navbarNavNavLink} ${navigation.exploreLink}`}>
-              <span className={navigation.navbarNavItemContent}><FontAwesomeIcon icon={faUser} /></span>
+            <Nav.Link as={Link} to="/login" className={`${navigation.navbarNavNavLink} ${navigation.exploreLink}`}>
+              <span className={navigation.navbarNavItemContent}>
+                <FontAwesomeIcon icon={faUser} />
+              </span>
             </Nav.Link>
 
-            <Nav.Link className={` ${isPostAdPage ? 'd-none' : ''} `}><PrimaryButton /></Nav.Link>
+            <Nav.Link className={` ${isPostAdPage ? '' : ''} `}>
+              <PrimaryButton />
+            </Nav.Link>
+            {/* Dropdown menu for login/register */}
             <Dropdown
               show={showDropdown}
               onMouseEnter={handleDropdownMouseEnter}
               onMouseLeave={handleDropdownMouseLeave}
               onClick={handleDropdownToggle}
-              className='hidden d-none'
+              className="hidden d-none"
             >
               <Dropdown.Toggle id="more-dropdown">
                 <FontAwesomeIcon icon={faUser} />
@@ -228,21 +254,18 @@ function Navigation() {
                 unmountOnExit
               >
                 <Dropdown.Menu className={`dropdown-menu-right ${navigation.dropdownMenu}`}>
-                  <Dropdown.Item className={navigation.dropdownItem} onClick={openPopup}>Login/Register</Dropdown.Item>
+                  <Dropdown.Item className={navigation.dropdownItem} onClick={openPopup}>
+                    Login/Register
+                  </Dropdown.Item>
                   {/* Your existing code */}
                 </Dropdown.Menu>
               </CSSTransition>
             </Dropdown>
-
-
-            
-
-
           </Nav>
         </Navbar.Collapse>
       </Navbar>
 
-
+      {/* Popup for login/register */}
       {showPopup && (
         <div className={navigation.popup}>
           <div className={navigation.popupContent}>
@@ -293,7 +316,9 @@ function Navigation() {
                       <input type="checkbox" id="rememberMe" />
                       <label htmlFor="rememberMe">Remember me</label>
                     </div>
-                    <a href="#" className={navigation.forgotPasswordLink}>Forgot password?</a>
+                    <a href="#" className={navigation.forgotPasswordLink}>
+                      Forgot password?
+                    </a>
                   </div>
                   <button type="submit" className={navigation.formButton}>
                     Login

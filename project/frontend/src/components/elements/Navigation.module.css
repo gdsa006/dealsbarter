@@ -90,16 +90,28 @@
 
 .logo {
   width: 200px;
-  height: auto;
+  /* height: auto; */
 }
 
+
 .postadNavbar{
-  background-color: #fbfbfb !important;
-  position: static !important;
+  /* background-color: #fbfbfb !important;
+  position: static !important; */
+  background: linear-gradient(180deg, #2d2db0 -65%, #2c8cf4 110%);
 }
 
 .postadNavbar.shadow{
-  background-color: #ffffff !important;
+  background: #ffffff !important;
+
+}
+
+.postadNavbar.navbarNavNavLink *{
+  color: #333333 !important;
+}
+
+
+.postadNavbar.shadow .navbarNavNavLink *{
+  color: #333333 !important;
 }
 
 
@@ -145,10 +157,6 @@ z-index: 999;
 }
 
 
-.postAdPage .navbarNavNavLink{
-  color: #007bff !important;
-  padding: 25px 0;
-}
 
 .navbarNavNavLink:hover{
   color: #ffffff !important;

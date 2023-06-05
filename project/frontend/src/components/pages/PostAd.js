@@ -4,12 +4,15 @@ import wideImage from '../../images/wideImage.jpg'; // Import your logo image
 import { Form, Button } from 'react-bootstrap';
 import AdForm from '../partials/AdForm';
 import art from '../../images/art.png'; // Import your logo image
+import { useLocation, Link } from 'react-router-dom';
 
 function PostAd() {
-
+    const location = useLocation();
+    const isHomePage = location.pathname === '/';
+    const isPostAdPage = location.pathname === '/post-ad/';
     return (
         <div>
-            <section className={`${postad.mySection} ${postad.postAd}`}>
+            <section className={`${postad.mySection} ${postad.postAd} ${isPostAdPage ? postad.myPostAdSection : ''}`}>
                 <div className={`${postad.backgroundContainer}`}></div>
                 <div className={`${postad.backgroundContainer} ${postad.backgroundContainer2}`}></div>
                 <div className={`${postad.backgroundContainer} ${postad.backgroundContainer3}`}></div>

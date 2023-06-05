@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+    text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24px;
+      fill: #ffffff;
+    }
+  </style>
+  <text x="0" y="30">dealsBarter.com</text>
+</svg>

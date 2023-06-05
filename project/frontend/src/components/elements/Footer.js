@@ -12,7 +12,7 @@ const Footer = () => {
         <Row>
           <Col md={4}>
             <h4>About Us</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vestibulum magna ut risus pulvinar, ac laoreet orci consequat.</p>
+            <p>dealsBarter.com portal is created with the vision of helping people who are involved in barter deals but find it difficult to find suitable deals for themselves nearby &amp; over web.</p>
             <div className={footerStyles.socialIcons}>
               <FontAwesomeIcon icon={faFacebookF} />
               <FontAwesomeIcon icon={faTwitter} />
@@ -52,9 +52,9 @@ const Footer = () => {
           <Col md={4}>
             <h4>Quick Links</h4>
             <ul className={footerStyles.quickLinks}>
-              <li><a href="#home">Home</a></li>
-              <li><a href="/about-us/">About</a></li>
-              <li><a href="#services">Services</a></li>
+              <li><a href="/">Home</a></li>
+              <li><a href="/about-us/">About Us</a></li>
+              <li><a href="/contact-us/">Contact Us</a></li>
               <li><a href="#properties">Menu</a></li>
               <li><a href="#contact">Menu</a></li>
             </ul>
