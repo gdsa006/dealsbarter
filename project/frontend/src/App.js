@@ -1,4 +1,5 @@
 import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'slick-carousel/slick/slick.css';
@@ -11,9 +12,18 @@ import Footer from './components/elements/Footer';
 import AboutUs from './components/pages/AboutUs';
 import PostAd from './components/pages/PostAd';
 import ContactUs from './components/pages/ContactUs';
+import WebFont from 'webfontloader';
 
 
 function App() {
+
+  useEffect(() => {
+    WebFont.load({
+      google: {
+        families: ['Playfair Display:400'],
+      },
+    });
+  }, []);
   return (
     <div className="App">
       <Router>

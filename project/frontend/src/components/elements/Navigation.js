@@ -3,7 +3,6 @@ import { Navbar, Nav, Dropdown, Form, FormControl, Button } from 'react-bootstra
 import { Row, Col } from 'react-bootstrap';
 import { CSSTransition } from 'react-transition-group';
 import navigation from './Navigation.module.css';
-import logo from '../../images/logo.png'; // Import your logo image
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faLock, faEnvelope, faMobile, faSearch, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
@@ -140,12 +139,12 @@ function Navigation() {
       >
         <Navbar.Brand href="/">
           {!isScrolled ? 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" width="280" height="50">
-  <text x="0" y="37" font-family="Montserrat, Arial, sans-serif" font-size="30" font-weight="bold" fill="#ffffff">dealsBarter.com</text>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" width="250" height="50">
+  <text x="0" y="37" font-family="Playfair Display" font-size="30" font-weight="600" fill="#ffffff">dealsBarter.com</text>
 </svg>
 :
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" width="280" height="50">
-  <text x="0" y="37" font-family="Montserrat, Arial, sans-serif" font-size="30" font-weight="bold" fill="#2c8cf4">dealsBarter.com</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" width="250" height="50">
+<text x="0" y="37" font-family="Playfair Display" font-size="30" font-weight="600" fill="#2c8cf4">dealsBarter.com</text>
 </svg>
 }
 
