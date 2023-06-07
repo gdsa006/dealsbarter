@@ -28,7 +28,7 @@ function Navigation() {
   const handleExploreClick = () => {
     setShowExploreDropdown((prevValue) => !prevValue);
   };
-  
+
 
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
@@ -49,7 +49,7 @@ function Navigation() {
         setIsScrolled(false);
       }
     };
-    
+
 
     window.addEventListener('scroll', handleScroll);
     return () => {
@@ -71,7 +71,7 @@ function Navigation() {
     const handleWindowScroll = () => {
       setShowExploreDropdown(false);
     };
-  
+
     document.addEventListener('click', handleDocumentClick);
     window.addEventListener('scroll', handleWindowScroll);
 
@@ -80,9 +80,9 @@ function Navigation() {
       window.removeEventListener('scroll', handleWindowScroll);
     };
   }, []);
-  
-  
-  
+
+
+
 
 
   const handleDropdownToggle = () => {
@@ -126,27 +126,26 @@ function Navigation() {
 
   const location = useLocation();
   const isHomePage = location.pathname === '/';
-  const isPostAdPage = location.pathname === '/post-ad/';
+  const isPostAdPage = location.pathname === '/';
 
   return (
     <>
       <Navbar
         expand="lg"
         fixed="top"
-        className={`${navigation.navbar} ${isScrolled ? navigation.scrolled : ''} ${
-          isScrolled ? navigation.shadow : ''
-        } ${!isHomePage ? navigation.homepageNavbar : ''} ${isPostAdPage ? navigation.postadNavbar : ''}`}
+        className={`${navigation.navbar} ${isScrolled ? navigation.scrolled : ''} ${isScrolled ? navigation.shadow : ''
+          } ${!isHomePage ? navigation.homepageNavbar : ''} ${!isPostAdPage ? navigation.postadNavbar : ''}`}
       >
         <Navbar.Brand href="/">
-          {!isScrolled ? 
+          {!isScrolled ?
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" width="250" height="50">
-  <text x="0" y="37" font-family="Playfair Display" font-size="30" font-weight="600" fill="#ffffff">dealsBarter.com</text>
-</svg>
-:
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" width="250" height="50">
-<text x="0" y="37" font-family="Playfair Display" font-size="30" font-weight="600" fill="#2c8cf4">dealsBarter.com</text>
-</svg>
-}
+              <text x="0" y="37" font-family="Playfair Display" font-size="30" font-weight="600" fill="#ffffff">dealsBarter.com</text>
+            </svg>
+            :
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" width="250" height="50">
+              <text x="0" y="37" font-family="Playfair Display" font-size="30" font-weight="600" fill="#ffffff">dealsBarter.com</text>
+            </svg>
+          }
 
 
 
@@ -156,7 +155,7 @@ function Navigation() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           {(isScrolled || !isHomePage) && (
-            <Nav className={`ml-auto ${navigation.navbarNav} ${isPostAdPage ? '' : ''}`}>
+            <Nav className={`ml-auto ${navigation.navbarNav} ${!isPostAdPage ? '' : ''}`}>
               <Form inline className={`${navigation.searchForm} ml-auto`}>
                 <FormControl type="text" placeholder="Search" className={navigation.searchInput} />
                 <Button variant="outline-primary" className={navigation.searchButton}>
@@ -166,12 +165,11 @@ function Navigation() {
             </Nav>
           )}
 
-          <Nav className={`ml-auto ${navigation.navbarNav} ${isPostAdPage ? navigation.postAdPage : ''}`}>
+          <Nav className={`ml-auto ${navigation.navbarNav} ${!isPostAdPage ? navigation.postAdPage : ''}`}>
             <Nav.Link
               onClick={handleExploreClick}
-              className={`${navigation.navbarNavNavLink} ${navigation.exploreLink} ${
-                showExploreDropdown ? navigation.NavLinkActive : ''
-              }`}
+              className={`${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
+                }`}
             >
               <span className={navigation.navbarNavItemContent}>Explore</span>
             </Nav.Link>
@@ -226,13 +224,13 @@ function Navigation() {
               </Dropdown.Menu>
             )}
 
-            <Nav.Link as={Link} to="/login" className={`${navigation.navbarNavNavLink} ${navigation.exploreLink}`}>
-              <span className={navigation.navbarNavItemContent}>
+            <Nav.Link as={Link} className={`${navigation.navbarNavNavLink} ${navigation.exploreLink}`}>
+              <span className={navigation.navbarNavItemContent} onClick={openPopup}>
                 <FontAwesomeIcon icon={faUser} />
               </span>
             </Nav.Link>
 
-            <Nav.Link className={` ${isPostAdPage ? '' : ''} `}>
+            <Nav.Link className={` ${!isPostAdPage ? '' : ''} `}>
               <PrimaryButton />
             </Nav.Link>
             {/* Dropdown menu for login/register */}
@@ -288,69 +286,92 @@ function Navigation() {
             <div className={navigation.tabContent}>
               {activeTab === 'login' && (
                 <form onSubmit={handleLoginSubmit}>
-                  <div className={navigation.formGroup}>
-                    <label htmlFor="login-email">
-                      <FontAwesomeIcon icon={faEnvelope} />
-                    </label>
+                  <div className={`mb-3 ${navigation.formGroup}`}>
                     <input
                       type="text"
                       id="login-email"
                       placeholder="Email/Mobile"
+                      className='form-control'
                       required
                     />
                   </div>
-                  <div className={navigation.formGroup}>
-                    <label htmlFor="login-password">
-                      <FontAwesomeIcon icon={faLock} />
-                    </label>
+                  <div className={`mb-3 ${navigation.formGroup}`}>
+
                     <input
                       type="password"
                       id="login-password"
                       placeholder="Password"
+                      className='form-control'
                       required
                     />
                   </div>
-                  <div className={navigation.formGroup}>
-                    <div className={navigation.rememberMeContainer}>
-                      <input type="checkbox" id="rememberMe" />
-                      <label htmlFor="rememberMe">Remember me</label>
+                  <div className={`mb-3 $navigation.formGroup`}>
+                    <div className={navigation.inlineFormFields}>
+                      <div className={navigation.formField}>
+                        <div className={navigation.rememberMeContainer}>
+                          <input type="checkbox" id="rememberMe" />
+                          <label className='mb-0' htmlFor="rememberMe">Remember me</label>
+                        </div>
+                      </div>
+                      <div className={navigation.formField}>
+                        <a href="#" className={navigation.forgotPasswordLink}>
+                          Forgot password?
+                        </a>
+                      </div>
                     </div>
-                    <a href="#" className={navigation.forgotPasswordLink}>
-                      Forgot password?
-                    </a>
                   </div>
-                  <button type="submit" className={navigation.formButton}>
+                  <button type="submit" className={`btn btn-success ${navigation.formButton}`}>
                     Login
                   </button>
                 </form>
               )}
               {activeTab === 'register' && (
                 <form onSubmit={handleRegisterSubmit}>
-                  <div className={navigation.formGroup}>
-                    <label htmlFor="registerName">
-                      <FontAwesomeIcon icon={faUser} />
-                    </label>
-                    <input type="text" id="registerName" placeholder="Name" required />
+                  <div className={`mb-3 ${navigation.formGroup}`}>
+                    <div className={navigation.inlineFormFields}>
+                      <div className={navigation.formField}>
+                        <input
+                          type="text"
+                          id="login-first-name"
+                          placeholder="First Name"
+                          className='form-control'
+                          required
+                        />
+                      </div>
+                      <div className={navigation.formField}>
+                        <input
+                          type="text"
+                          id="login-last-name"
+                          placeholder="Last Name"
+                          className='form-control'
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className={`mb-3 ${navigation.formGroup}`}>
+                    <input
+                      type="text"
+                      id="login-email"
+                      placeholder="Email/Mobile"
+                      className='form-control'
+                      required
+                    />
+                  </div>
+                  <div className={`mb-3 ${navigation.formGroup}`}>
+
+                    <input
+                      type="password"
+                      id="login-password"
+                      placeholder="Password"
+                      className='form-control'
+                      required
+                    />
                   </div>
                   <div className={navigation.formGroup}>
-                    <label htmlFor="registerEmail">
-                      <FontAwesomeIcon icon={faEnvelope} />
-                    </label>
-                    <input type="email" id="registerEmail" placeholder="Email" required />
+                      <p style={{fontSize: '11px'}}>I agree to the <a href=''>Terms of Use</a>, <a href='#'>DPA</a> and <a href='#'>Privacy Notice</a> upon signup. </p>
                   </div>
-                  <div className={navigation.formGroup}>
-                    <label htmlFor="registerPassword">
-                      <FontAwesomeIcon icon={faLock} />
-                    </label>
-                    <input type="password" id="registerPassword" placeholder="Password" required />
-                  </div>
-                  <div className={navigation.formGroup}>
-                    <label htmlFor="registerPhone">
-                      <FontAwesomeIcon icon={faMobile} />
-                    </label>
-                    <input type="tel" id="registerPhone" placeholder="Phone" required />
-                  </div>
-                  <button type="submit" className={navigation.formButton}>
+                  <button type="submit" className={`btn btn-success ${navigation.formButton}`}>
                     Register
                   </button>
                 </form>
@@ -359,6 +380,8 @@ function Navigation() {
           </div>
         </div>
       )}
+
+
     </>
   );
 }

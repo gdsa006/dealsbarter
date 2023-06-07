@@ -4,7 +4,7 @@ import wideImage from '../../images/wideImage.jpg'; // Import your logo image
 import { Form, Button } from 'react-bootstrap';
 import { Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTools,faWrench, faGift, faHashtag, faCrown, faRibbon } from '@fortawesome/free-solid-svg-icons';
+import { faTools,faWrench, faGift, faHashtag, faCrown, faRibbon, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 function Search() {
     const [selectedCategory, setSelectedCategory] = useState('');
@@ -35,6 +35,8 @@ function Search() {
             <div className={`${search.skewedContainer} ${search.imageContainer}`}>
                 <img src={wideImage} alt="Header Image" className={search.image} />
                 <div className={search.searchBox}>
+                <h2>Looking for Something?</h2>
+                <p></p>
                     <div className={search.searchContainer}>
                         <div className={search.searchRow}>
                             <Form className={search.searchForm}>
@@ -51,7 +53,7 @@ function Search() {
                                     <option value="category2">Maharashtra</option>
                                 </Form.Control>
                                 <Button variant="primary" onClick={handleSearch} className={search.searchButton}>
-                                    Search
+                                <FontAwesomeIcon icon={faSearch} />
                                 </Button>
                             </Form>
                         </div>

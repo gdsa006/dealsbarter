@@ -5,7 +5,6 @@
     transform: translate(-50%, -50%);
     width: 50%;
     /* Adjust the width as needed */
-    background-color: rgba(255, 255, 255, 0.95);
     /* Set the background color with transparency */
     padding: 10px;
     /* Add padding as needed */
@@ -15,10 +14,20 @@
     margin-top: -20px;
 }
 
+.searchBox h2{
+    color: #ffffff;
+    margin-bottom:30px;
+    font-weight: 300;
+    font-family: 'Quicksand', sans-serif !important;
+}
+
+
 .searchBox form {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 6px;
 }
 
 .searchBox .form-control {
@@ -40,16 +49,22 @@
     border: 0;
     background-color: transparent;
     font-size: 14px;
-    height: 40px;
+    height: 50px;
+}
+
+.categoryDropdown:focus{
+    background-color: transparent;
+    background: transparent;
 }
 
 .searchInput {
     flex: 1;
     border: 0;
     background-color: transparent;
-    font-size: 14px;
+    font-size: 16px;
     height: 40px;
-    margin: 0
+    margin: 0;
+    padding: 25px 0;
 }
 
 .searchInput:focus{
@@ -67,6 +82,19 @@
 
 .searchButton {
     margin-left: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 0;
+    border: 0;
+    padding-left: 25px;
+    padding-right: 25px;
+    background-color: transparent;
+    color: #2c8cf4;
+}
+
+.searchButton:hover{
+    color: #1c82f0;
+    background-color: transparent;
 }
 
 .image {

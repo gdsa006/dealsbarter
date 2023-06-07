@@ -27,7 +27,6 @@
     background-color: #ffffff;
     border-radius: 4px;
     padding: 10px;
-    color: #2853a3;
   }
   
   .footer .contactInfo {
@@ -85,3 +84,24 @@
     color: #cccccc;
   }
   
+  /* footerStyles.module.css */
+
+.facebook {
+  color: #3b5998; /* Replace with your desired Facebook color */
+}
+
+.twitter {
+  color: #1da1f2; /* Replace with your desired Twitter color */
+}
+
+.instagram {
+  color: #c13584; /* Replace with your desired Instagram color */
+}
+
+.youtube {
+  color: #ff0000; /* Replace with your desired YouTube color */
+}
+
+.linked {
+  color: #0077b5; /* Replace with your desired LinkedIn color */
+}
