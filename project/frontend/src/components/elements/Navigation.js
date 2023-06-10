@@ -132,7 +132,7 @@ function Navigation() {
     <>
       <Navbar
         expand="lg"
-        fixed="top"
+        fixed={isScrolled ? "top" : undefined}
         className={`${navigation.navbar} ${isScrolled ? navigation.scrolled : ''} ${isScrolled ? navigation.shadow : ''
           } ${!isHomePage ? navigation.homepageNavbar : ''} ${!isPostAdPage ? navigation.postadNavbar : ''}`}
       >

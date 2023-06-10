@@ -1,0 +1,133 @@
+.myHeader{
+    background-color:  #3c6baf;
+    height: 250px;
+    position: relative;
+}
+
+.myHeader .myHeaderImage{
+    position: absolute;
+    right:0;
+    top: 0;
+    width: 650px;
+    height: 250px;
+    object-fit: cover;
+    object-position: top;
+    mask-image: linear-gradient(to right, transparent,  #3c6baf);
+  -webkit-mask-image: linear-gradient(to right, transparent,  #3c6baf);
+}
+
+.myHeader .myHeaderContainer{
+    height: 100%;
+}
+
+.myHeader .myHeaderContainer .row{
+    height: 100%;
+}
+
+.myHeader h3{
+    color: #ffffff;
+    margin-top: -20px;
+}
+
+.myHeader p{
+    color: #ffffff;
+}
+
+.customCard{
+    box-shadow: 0px 0px 19px -4px rgba(0, 0, 0, 0.2);
+    padding: 45px 25px;
+    position: relative;
+    top: -60px;
+
+}
+
+.customCardForm{
+    padding: 25px;
+}
+
+.customCardSocial{
+    padding: 23px;
+}
+
+.customCardSocial .callSection{
+    margin-bottom: 0;
+}
+
+.callSection {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .callIcon {
+    font-size: 2rem;
+    margin-right: 10px;
+    border: #3c6baf solid 2px;
+    padding: 20px;
+    border-radius: 100%;
+    color: #3c6baf;
+  }
+  
+  .callText {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .phoneNumber {
+    margin: 0;
+    font-weight: bold;
+    font-size: 32px;
+    color: #2c8cf4;
+  }
+  
+  /* Rest of the card styling from the previous example remains the same */
+  
+
+  .contactForm{
+
+  }
+
+  .contactForm h3{
+    text-align: center;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 30px;
+  }
+
+  .contactForm p{
+    margin-bottom: 30px;
+  }
+
+.socialIcons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+.socialIcons svg {
+    font-size: 24px;
+    margin-right: 10px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    padding: 0 10px;
+  }
+
+  .facebook {
+    color: #3b5998; /* Replace with your desired Facebook color */
+  }
+  
+  .twitter {
+    color: #1da1f2; /* Replace with your desired Twitter color */
+  }
+  
+  .instagram {
+    color: #c13584; /* Replace with your desired Instagram color */
+  }
+  
+  .youtube {
+    color: #ff0000; /* Replace with your desired YouTube color */
+  }
+  
+  .linked {
+    color: #0077b5; /* Replace with your desired LinkedIn color */
+  }
