@@ -5,6 +5,7 @@ import { Card, Form, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faCommentDots } from '@fortawesome/free-solid-svg-icons';
 import { faFacebookF, faTwitter, faInstagram, faYoutube, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import PageHeader from '../partials/PageHeader';
 
 function ContactUs() {
     const [firstName, setFirstName] = useState('');
@@ -28,18 +29,7 @@ function ContactUs() {
 
     return (
         <div>
-            <section className={`${contactus.myHeader}`}>
-                <img src={wideImage} className={`${contactus.imageShape} ${contactus.myHeaderImage}`} />
-                <div className={`container ${contactus.myHeaderContainer}`}>
-                    <div className={`row align-items-center ${contactus.myHeaderContainer}`}>
-                        <div className={`col-md-6 ${contactus.column}`}>
-                            <h3>Get in touch</h3>
-                            <p>Want to get in touch? We'd love to hear from you.</p>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
+            <PageHeader image={wideImage} imagePosition="top" title="Get in touch" text="Want to get in touch? We'd love to hear from you." mode="1" />
             <section className={`${contactus.mySection}`}>
                 <div className="container">
                     <div className='row'>

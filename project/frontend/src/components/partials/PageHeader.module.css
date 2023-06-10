@@ -1,0 +1,33 @@
+.myHeader{
+    background-color: #f8f8f8;
+    height: 250px;
+    position: relative;
+}
+
+.myHeader .myHeaderImage{
+    position: absolute;
+    right:0;
+    top: 0;
+    width: 650px;
+    height: 250px;
+    object-fit: cover;
+    mask-image: linear-gradient(to right, transparent,  #f8f8f8);
+  -webkit-mask-image: linear-gradient(to right, transparent,  #f8f8f8);
+}
+
+.myHeader .myHeaderContainer{
+    height: 100%;
+}
+
+.myHeader .myHeaderContainer .row{
+    height: 100%;
+}
+
+.myHeader h3{
+    color: #2c8cf4;
+    margin-top: -20px;
+}
+
+.myHeader p{
+    color: #333333;
+}

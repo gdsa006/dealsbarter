@@ -1,37 +1,4 @@
-.myHeader{
-    background-color:  #3c6baf;
-    height: 250px;
-    position: relative;
-}
 
-.myHeader .myHeaderImage{
-    position: absolute;
-    right:0;
-    top: 0;
-    width: 650px;
-    height: 250px;
-    object-fit: cover;
-    object-position: top;
-    mask-image: linear-gradient(to right, transparent,  #3c6baf);
-  -webkit-mask-image: linear-gradient(to right, transparent,  #3c6baf);
-}
-
-.myHeader .myHeaderContainer{
-    height: 100%;
-}
-
-.myHeader .myHeaderContainer .row{
-    height: 100%;
-}
-
-.myHeader h3{
-    color: #ffffff;
-    margin-top: -20px;
-}
-
-.myHeader p{
-    color: #ffffff;
-}
 
 .customCard{
     box-shadow: 0px 0px 19px -4px rgba(0, 0, 0, 0.2);

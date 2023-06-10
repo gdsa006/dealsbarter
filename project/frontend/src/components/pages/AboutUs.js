@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import aboutus from './AboutUs.module.css';
-import wideImage from '../../images/wideImage.jpg'; // Import your logo image
+import wideImage from '../../images/331508-P9UHZV-967.jpg'; // Import your logo image
 import { Form, Button } from 'react-bootstrap';
+import PageHeader from '../partials/PageHeader';
 
 function Aboutus() {
-
     return (
         <div>
+            <PageHeader image={wideImage} imagePosition="center bottom" title="About Us" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." mode="0" />
             <section className={`${aboutus.mySection}`}>
                 <div className="container">
                     <div className='row'>
                         <div className={`col-md-8 offset-md-2 ${aboutus.column}`}>
-                            <h3>About Us</h3>
                             <p>
                                 dealsBarter.com portal is created with the vision of helping people who are involved in barter deals
                                 but find it difficult to find suitable deals for themselves nearby &amp; over web.

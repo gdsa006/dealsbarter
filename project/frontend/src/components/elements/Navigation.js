@@ -132,7 +132,7 @@ function Navigation() {
     <>
       <Navbar
         expand="lg"
-        fixed={isScrolled ? "top" : undefined}
+        fixed={!isHomePage ? (isScrolled ? 'top' : undefined) : 'top'}
         className={`${navigation.navbar} ${isScrolled ? navigation.scrolled : ''} ${isScrolled ? navigation.shadow : ''
           } ${!isHomePage ? navigation.homepageNavbar : ''} ${!isPostAdPage ? navigation.postadNavbar : ''}`}
       >
@@ -296,7 +296,6 @@ function Navigation() {
                     />
                   </div>
                   <div className={`mb-3 ${navigation.formGroup}`}>
-
                     <input
                       type="password"
                       id="login-password"
@@ -359,7 +358,6 @@ function Navigation() {
                     />
                   </div>
                   <div className={`mb-3 ${navigation.formGroup}`}>
-
                     <input
                       type="password"
                       id="login-password"
@@ -368,8 +366,15 @@ function Navigation() {
                       required
                     />
                   </div>
+                  <div className={`mb-3 ${navigation.formGroup}`}>
+                    <select className='form-control' id="howDidYouHear">
+                      <option value="">How did you hear about us?</option>
+                      <option value="friend">Friend/Colleague</option>
+                      <option value="socialMedia">Social Media</option>
+                    </select>
+                  </div>
                   <div className={navigation.formGroup}>
-                      <p style={{fontSize: '11px'}}>I agree to the <a href=''>Terms of Use</a>, <a href='#'>DPA</a> and <a href='#'>Privacy Notice</a> upon signup. </p>
+                    <p style={{ fontSize: '11px' }}>I agree to the <a href=''>Terms of Use</a>, <a href='#'>DPA</a> and <a href='#'>Privacy Notice</a> upon signup. </p>
                   </div>
                   <button type="submit" className={`btn btn-success ${navigation.formButton}`}>
                     Register
@@ -380,10 +385,7 @@ function Navigation() {
           </div>
         </div>
       )}
-
-
     </>
   );
 }
-
 export default Navigation;

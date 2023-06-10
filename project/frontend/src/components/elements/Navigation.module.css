@@ -328,8 +328,6 @@ button {
 .popup select,
 .popup button {
   width: 100%;
-  padding: 10px;
-  border: none;
   outline: none;
   border-radius: 4px;
   font-size: 16px;
