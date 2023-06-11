@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import search from './Search.module.css';
 import wideImage from '../../images/wideImage.jpg'; // Import your logo image
 import { Form, Button } from 'react-bootstrap';
@@ -18,15 +18,12 @@ function Search() {
         setSelectedLocation(event.target.value);
     };
 
-    const handleDetectLocation = () => {
-        // Add your logic to detect the location here
-        // You can use browser APIs or external services to determine the user's location
-        // Update the state or perform any additional actions based on the detected location
-        // Example:
-        console.log('Detecting location...');
-    };
+    
 
-    const handleSearch = () => {
+   
+
+
+      const handleSearch = () => {
         // Implement search functionality based on selected category, location, and search term
     };
 

@@ -13,6 +13,7 @@ import AboutUs from './components/pages/AboutUs';
 import PostAd from './components/pages/PostAd';
 import ContactUs from './components/pages/ContactUs';
 import WebFont from 'webfontloader';
+import { LocationProvider } from './LocationContext';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
   }, []);
   return (
     <div className="App">
+      <LocationProvider>
       <Router>
         <div>
           <Navigation />
@@ -39,6 +41,7 @@ function App() {
           <Footer />
         </div>
       </Router>
+      </LocationProvider>
     </div>
   );
 }

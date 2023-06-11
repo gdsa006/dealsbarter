@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState,useContext, useRef, useEffect } from 'react';
 import { Navbar, Nav, Dropdown, Form, FormControl, Button } from 'react-bootstrap';
 import { Row, Col } from 'react-bootstrap';
 import { CSSTransition } from 'react-transition-group';
@@ -9,11 +9,15 @@ import { faLock, faEnvelope, faMobile, faSearch, faAngleLeft } from '@fortawesom
 import PrimaryButton from '../partials/PrimaryButton';
 import { useLocation, Link } from 'react-router-dom';
 import CategoryImage from '../../images/pexels-photo-1547248.webp'; // Import your logo image
+import { LocationContext } from '../../LocationContext';
 
 function Navigation() {
   const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [showExploreDropdown, setShowExploreDropdown] = useState(false);
+  const { updateLocation } = useContext(LocationContext);
+  const { location } = useContext(LocationContext);
+  const { city } = location;
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
@@ -124,9 +128,71 @@ function Navigation() {
     // Handle register form submission
   };
 
-  const location = useLocation();
-  const isHomePage = location.pathname === '/';
-  const isPostAdPage = location.pathname === '/';
+  const path = useLocation();
+  const isHomePage = path.pathname === '/';
+  const isPostAdPage = path.pathname === '/';
+
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(getLocation);
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  }, []);
+
+  function getLocation(position) {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    
+    fetchCityAndState(latitude, longitude);
+  }
+
+  async function fetchCityAndState(latitude, longitude) {
+    const apiKey = 'AIzaSyB701mTHnvBY9CQqUli-vkWoTclJFGwX94'; // Replace with your Google Maps API key
+    const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`;
+
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+
+      if (data.status === 'OK') {
+        const addressComponents = data.results[0].address_components;
+        let city, state;
+
+        // Loop through the address components to find the city and state
+        for (let i = 0; i < addressComponents.length; i++) {
+          const component = addressComponents[i];
+          const types = component.types;
+
+          if (types.includes('locality')) {
+            city = component.long_name;
+          }
+
+          if (types.includes('administrative_area_level_1')) {
+            state = component.short_name;
+          }
+
+          // Break the loop if both city and state are found
+          if (city && state) {
+            break;
+          }
+        }
+
+        console.log("City: " + city);
+        console.log("State: " + state);
+        updateLocation({
+            city: city,
+            state: state,
+          });
+      } else {
+        console.log("Error: " + data.status);
+      }
+    } catch (error) {
+      console.log("Error fetching data:", error);
+    }
+  }
+
 
   return (
     <>
@@ -166,6 +232,14 @@ function Navigation() {
           )}
 
           <Nav className={`ml-auto ${navigation.navbarNav} ${!isPostAdPage ? navigation.postAdPage : ''}`}>
+          <Nav.Link
+              onClick={handleExploreClick}
+              className={`${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
+                }`}
+            >
+                            <span className={navigation.navbarNavItemContent}>{city}</span>
+
+              </Nav.Link>
             <Nav.Link
               onClick={handleExploreClick}
               className={`${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
