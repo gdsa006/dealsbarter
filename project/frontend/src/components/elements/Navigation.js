@@ -228,22 +228,23 @@ function Navigation() {
             </Nav>
           )}
           <Nav className={`ml-auto ${navigation.navbarNav} ${!isPostAdPage ? navigation.postAdPage : ''}`}>
-            {location.city ? (
-              <Nav.Link
-                className={`${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
-                  }`}
-              >
-                <span className={navigation.navbarNavItemContent}>{city}</span>
-              </Nav.Link>
-            ) : (
-              <Nav.Link
-                onClick={detectLocation}
-                className={`${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
-                  }`}
-              >
-                <span className={navigation.navbarNavItemContent}>Detect Location</span>
-              </Nav.Link>
-            )}
+          {location.city ? (
+  <Nav.Link
+    className={`${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
+      }`}
+  >
+    <span className={navigation.navbarNavItemContent}>{city}</span>
+  </Nav.Link>
+) : (
+  <Nav.Link
+    onClick={detectLocation}
+    className={`${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
+      }`}
+  >
+    <span className={navigation.navbarNavItemContent}>Detect Location</span>
+  </Nav.Link>
+)}
+
             <Nav.Link
               onClick={handleExploreClick}
               className={`${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
