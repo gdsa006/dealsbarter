@@ -1,4 +1,4 @@
-import React, { useState,useContext, useRef, useEffect } from 'react';
+import React, { useState, useContext, useRef, useEffect } from 'react';
 import { Navbar, Nav, Dropdown, Form, FormControl, Button } from 'react-bootstrap';
 import { Row, Col } from 'react-bootstrap';
 import { CSSTransition } from 'react-transition-group';
@@ -16,7 +16,7 @@ function Navigation() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [showExploreDropdown, setShowExploreDropdown] = useState(false);
   const { updateLocation } = useContext(LocationContext);
-  const { location } = useContext(LocationContext);
+  const { location, detectLocation } = useContext(LocationContext);
   const { city } = location;
 
   const handleCategoryClick = (category) => {
@@ -144,7 +144,7 @@ function Navigation() {
   function getLocation(position) {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
-    
+
     fetchCityAndState(latitude, longitude);
   }
 
@@ -182,9 +182,9 @@ function Navigation() {
         console.log("City: " + city);
         console.log("State: " + state);
         updateLocation({
-            city: city,
-            state: state,
-          });
+          city: city,
+          state: state,
+        });
       } else {
         console.log("Error: " + data.status);
       }
@@ -212,9 +212,6 @@ function Navigation() {
               <text x="0" y="37" font-family="Playfair Display" font-size="30" font-weight="600" fill="#ffffff">dealsBarter.com</text>
             </svg>
           }
-
-
-
           {/* <img src={logo} alt="Logo" className={navigation.logo} /> Include your logo image here */}
         </Navbar.Brand>
 
@@ -230,16 +227,23 @@ function Navigation() {
               </Form>
             </Nav>
           )}
-
           <Nav className={`ml-auto ${navigation.navbarNav} ${!isPostAdPage ? navigation.postAdPage : ''}`}>
-          <Nav.Link
-              onClick={handleExploreClick}
-              className={`${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
-                }`}
-            >
-                            <span className={navigation.navbarNavItemContent}>{city}</span>
-
+            {location.city ? (
+              <Nav.Link
+                className={`${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
+                  }`}
+              >
+                <span className={navigation.navbarNavItemContent}>{city}</span>
               </Nav.Link>
+            ) : (
+              <Nav.Link
+                onClick={detectLocation}
+                className={`${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
+                  }`}
+              >
+                <span className={navigation.navbarNavItemContent}>Detect Location</span>
+              </Nav.Link>
+            )}
             <Nav.Link
               onClick={handleExploreClick}
               className={`${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
