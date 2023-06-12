@@ -4,7 +4,7 @@ import { Row, Col } from 'react-bootstrap';
 import { CSSTransition } from 'react-transition-group';
 import navigation from './Navigation.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faLocationPin } from '@fortawesome/free-solid-svg-icons';
 import { faLock, faEnvelope, faMobile, faSearch, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import PrimaryButton from '../partials/PrimaryButton';
 import { useLocation, Link } from 'react-router-dom';
@@ -194,6 +194,31 @@ function Navigation() {
   }
 
 
+  const [selectedCity, setSelectedCity] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+
+  function openLocationPopup() {
+    const location = prompt('Enter a location:');
+    if (location) {
+      searchLocation(location);
+    }
+  }
+
+  async function searchLocation(location) {
+    try {
+      const response = await fetch(`https://api.geolocation.com/?location=${location}`);
+      const data = await response.json();
+
+      // Assuming the API response contains an array of search results
+      const results = data.results;
+      console.log(searchResults);
+      setSearchResults(results);
+    } catch (error) {
+      console.error('Error searching for location:', error);
+    }
+  }
+
+
   return (
     <>
       <Navbar
@@ -227,15 +252,19 @@ function Navigation() {
               </Form>
             </Nav>
           )}
-          <Nav className={`ml-auto ${navigation.navbarNav} ${!isPostAdPage ? navigation.postAdPage : ''}`}>
-          {location.city ? (
+
+
+<Nav className={`ml-auto ${navigation.navbarNav} ${navigation.navbarNavLocation} ${!isPostAdPage ? navigation.postAdPage : ''}`}>
+
+{location.city ? (
   <Nav.Link
     className={`${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
       }`}
   >
-    <span className={navigation.navbarNavItemContent}>{city}</span>
+    <span className={navigation.navbarNavItemContent}><FontAwesomeIcon icon={faLocationPin} />&nbsp;{city}</span>
   </Nav.Link>
 ) : (
+  <>
   <Nav.Link
     onClick={detectLocation}
     className={`${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
@@ -243,7 +272,21 @@ function Navigation() {
   >
     <span className={navigation.navbarNavItemContent}>Detect Location</span>
   </Nav.Link>
+ 
+  <Nav.Link
+    onClick={detectLocation}
+    className={`${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
+      }`}
+  >
+    <span className={navigation.navbarNavItemContent} onClick={openLocationPopup}>Change Location</span>
+  </Nav.Link>
+  </>
 )}
+
+</Nav>
+
+          <Nav className={`ml-auto ${navigation.navbarNav} ${!isPostAdPage ? navigation.postAdPage : ''}`}>
+          
 
             <Nav.Link
               onClick={handleExploreClick}

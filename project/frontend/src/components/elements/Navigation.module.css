@@ -463,3 +463,10 @@ button:hover {
 .inlineFormFields .formField:last-child {
   margin-left: auto;
 }
+
+.navbarNavLocation .navbarNavNavLink span{
+  font-size: 12px;
+  background: #64a4db57;
+  padding: 8px 8px;
+  border-radius: 20px;
+}

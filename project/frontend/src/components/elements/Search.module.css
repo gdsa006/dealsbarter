@@ -12,6 +12,7 @@
     /* Add border-radius as needed */
     padding: 20px;
     margin-top: -20px;
+    z-index: 99;
 }
 
 .searchBox h2{
@@ -26,7 +27,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255, 1);
     border-radius: 6px;
 }
 
@@ -151,6 +152,40 @@
     padding: 35px 49px;
     box-sizing: border-box;
   }
+  
+  .searchContainer {
+    position: relative;
+    z-index: 99999999;
+  }
+  
+  .searchInputContainer {
+    position: relative;
+    width: 100%;
+    display: inline-block;
+    z-index: 9999;
+  }
+  
+  .searchResults {
+    position: absolute;
+    top: calc(100%);
+    left: 0;
+    z-index: 1;
+    background-color: #fff;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 0 0 10px 10px;
+  }
+  
+  .searchResultItem {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .searchResultItem:hover {
+    background-color: #f4f4f4;
+  }
+  
   
   @media (max-width: 1449px) {
     .trustedContainer .column {
