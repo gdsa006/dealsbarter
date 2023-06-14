@@ -1,53 +1,33 @@
 
-
-.myMainSection{
-    padding: 70px 0;
-    background-color: #fafafa;
-}
-
-/* SearchPage.module.css */
-
 /* Accordion card header */
-.cardHeader {
+.card-header {
     background-color: #f8f9fa;
-  }
-
-  .cardHeaderTitle{
-    padding: 0;
-  }
-
-  .cardHeader button{
-    background-color: transparent;
-  }
-
-  .cardHeader button:hover{
-    text-decoration: none;
+    padding: 0.75rem 1.25rem;
   }
   
   /* Accordion card body */
-  .cardBody {
+  .card-body {
     padding: 0.75rem 1.25rem;
   }
   
   /* Accordion toggle button */
-  .accordionButton {
-    color: #000000;
+  .card-header .btn {
+    color: #007bff;
     text-decoration: none;
   }
   
   /* Active (expanded) accordion header */
-  .active {
+  .card-header.active {
     background-color: #e9ecef;
-    text-decoration: none;
   }
   
   /* Custom styling for the accordion content */
-  .customAccordionContent {
+  .custom-accordion-content {
     margin-top: 10px;
   }
   
   /* Custom styling for the accordion checkboxes */
-  .customAccordionCheckbox {
+  .custom-accordion-checkbox {
     margin-bottom: 5px;
   }
   
