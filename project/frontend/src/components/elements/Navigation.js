@@ -254,11 +254,11 @@ function Navigation() {
           )}
 
 
-<Nav className={`ml-auto ${navigation.navbarNav} ${navigation.navbarNavLocation} ${!isPostAdPage ? navigation.postAdPage : ''}`}>
+<Nav className={`ml-auto ${navigation.navbarNav} ${navigation.navbarNavLocation} ${!isPostAdPage ? navigation.postAdPageLocationNav : ''}`}>
 
 {location.city ? (
   <Nav.Link
-    className={`${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
+    className={`${navigation.locationLink} ${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
       }`}
   >
     <span className={navigation.navbarNavItemContent}><FontAwesomeIcon icon={faLocationPin} />&nbsp;{city}</span>
@@ -267,7 +267,7 @@ function Navigation() {
   <>
   <Nav.Link
     onClick={detectLocation}
-    className={`${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
+    className={`${navigation.locationLink} ${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
       }`}
   >
     <span className={navigation.navbarNavItemContent}>Detect Location</span>
@@ -275,7 +275,7 @@ function Navigation() {
  
   <Nav.Link
     onClick={detectLocation}
-    className={`${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
+    className={`${navigation.locationLink} ${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
       }`}
   >
     <span className={navigation.navbarNavItemContent} onClick={openLocationPopup}>Change Location</span>
@@ -286,7 +286,34 @@ function Navigation() {
 </Nav>
 
           <Nav className={`ml-auto ${navigation.navbarNav} ${!isPostAdPage ? navigation.postAdPage : ''}`}>
-          
+
+
+          {location.city ? (
+  <Nav.Link
+    className={`${isHomePage ? 'd-none' : ''} ${navigation.locationLink} ${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
+      }`}
+  >
+    <span className={navigation.navbarNavItemContent}><FontAwesomeIcon icon={faLocationPin} />&nbsp;{city}</span>
+  </Nav.Link>
+) : (
+  <>
+  <Nav.Link
+    onClick={detectLocation}
+    className={`${isHomePage ? 'd-none' : ''} ${navigation.locationLink} ${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
+      }`}
+  >
+    <span className={navigation.navbarNavItemContent}>Detect Location</span>
+  </Nav.Link>
+ 
+  <Nav.Link
+    onClick={detectLocation}
+    className={`${isHomePage ? 'd-none' : ''} ${navigation.locationLink} ${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
+      }`}
+  >
+    <span className={navigation.navbarNavItemContent} onClick={openLocationPopup}>Change Location</span>
+  </Nav.Link>
+  </>
+)}
 
             <Nav.Link
               onClick={handleExploreClick}
@@ -295,7 +322,6 @@ function Navigation() {
             >
               <span className={navigation.navbarNavItemContent}>Explore</span>
             </Nav.Link>
-
             {showExploreDropdown && (
               <Dropdown.Menu
                 show={showExploreDropdown}

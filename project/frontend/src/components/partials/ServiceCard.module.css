@@ -2,6 +2,7 @@
     border: none;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s;
+    margin-bottom: 30px;
   }
   
   .serviceCard:hover {
@@ -13,7 +14,7 @@
   }
   
   .serviceImage {
-    width: 50%;
+    width: 40%;
     max-height: 100%;
     overflow: hidden;
   }
@@ -34,11 +35,39 @@
   
   .serviceTitle {
     font-size: 1.5rem;
-    margin-bottom: 1rem;
+  }
+
+  .serviceBody h6{
+    font-weight: 400;
+    color: #333333;
+  }
+
+  .serviceBody h4{
+    font-weight: 900;
+    color: #333333;
   }
   
+  .meta {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 15px;
+    color: #5a5a5a;
+  }
+  
+  .metaItem {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+  }
+  
+  .metaIcon {
+    margin-right: 0.5rem;
+  }
+
   .serviceDescription {
     margin-bottom: 1rem;
+    color: #5a5a5a;
   }
   
   .serviceDescription p {
@@ -49,3 +78,28 @@
     margin-top: 1rem;
   }
   
+  .exchangeWith {
+    display: inline-block;
+    position: relative;
+    padding: 8px;
+    border: 1px solid #888888;
+    padding: 15px;
+    margin-top: 20px;
+  }
+  
+  .exchangeWith::before {
+    content: 'Exchange With';
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    padding: 4px;
+    background-color: #fff;
+    font-weight: 400;
+    font-size: 13px;
+  }
+
+  .exchangeWith h5{
+    font-weight: 900;
+    color: #333333;
+    font-size: 18px;
+  }

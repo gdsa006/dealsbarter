@@ -148,6 +148,12 @@
   z-index: 9999;
 }
 
+.postAdPageLocationNav .locationLink{
+  display: none;
+}
+
+
+
 .postadNavbar .logo {
 position: relative;
 z-index: 999;

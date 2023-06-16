@@ -1,0 +1,118 @@
+/* SingleService.module.css */
+
+.fullWidth {
+    width: 100%;
+  }
+  
+
+  
+  .positionRelative {
+    position: relative;
+  }
+  
+  .positionAbsolute {
+    position: absolute;
+  }
+  
+  .bottom0 {
+    bottom: 0;
+  }
+  
+  .end0 {
+    right: 0;
+  }
+  
+  .m3 {
+    margin: 0.75rem;
+  }
+  
+  .flexColumn {
+    flex-direction: column;
+  }
+  
+  .justifyContentCenter {
+    justify-content: center;
+  }
+  
+  .mb4 {
+    margin-bottom: 1rem;
+  }
+
+  .title{
+    font-weight: bold;
+  }
+  
+  .description h6{
+    color: #333;
+    font-weight: 600;
+  }
+
+  .meta {
+  }
+
+  .meta h6{
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fafafa;
+    padding: 20px;
+    justify-content: center;
+  }
+  
+  .icon {
+    font-size: 24px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .boxText {
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+
+  .horizontalBoxes {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+small{
+    text-align: center;
+}
+
+.boldText{
+    background-color: #f8f8f8;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.boldText h5{
+    margin-bottom: 0;
+    text-align: center;
+    font-weight: bold;
+    color: #2d2db0;
+}
+
+.moreImages {
+    padding: 10px;
+    margin-top: 10px;
+  }
+  
+  .imageContainer {
+    padding: 0.25rem;
+  }
+  
+  .squareImage {
+    width: 100%;
+    object-fit: cover;
+  }

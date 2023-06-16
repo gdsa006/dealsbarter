@@ -15,6 +15,7 @@ import ContactUs from './components/pages/ContactUs';
 import WebFont from 'webfontloader';
 import { LocationProvider } from './LocationContext';
 import SearchPage from './components/pages/SearchPage';
+import SingleService from './components/pages/SingleService';
 
 
 function App() {
@@ -38,7 +39,8 @@ function App() {
             <Route path="/about-us/" element={<AboutUs />} />
             <Route path="/contact-us/" element={<ContactUs />} />
             <Route path="/post-ad/" element={<PostAd />} />
-            <Route path="/search-page" element={<SearchPage />} />
+            <Route path="/search-page/" element={<SearchPage />} />
+            <Route path="/service/single/" element={<SingleService />} />
           </Routes>
           <Footer />
         </div>

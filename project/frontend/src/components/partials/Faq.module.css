@@ -1,0 +1,37 @@
+.faqSection {
+    width: 100%;
+  }
+  
+
+  .faqAccordion {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+
+.faqAccordionButton {
+    width: 100%;
+    text-align: left;
+    padding: 1rem;
+    background-color: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 1px;
+  }
+  
+  .faqAccordionButton:focus {
+    outline: none;
+  }
+  
+  .faqAccordionButton:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .faqAccordionButton.collapsed {
+    background-color: #f7f7f7;
+  }
+  
+  .faqAccordionButton .accordion-button-icon {
+    margin-right: 0.5rem;
+  }
+  

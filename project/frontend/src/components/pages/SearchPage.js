@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import ServiceCard from '../partials/ServiceCard';
+import Breadcrumbs from '../partials/Breadcrumbs';
 
 function SearchPage() {
   const location = useLocation();
@@ -55,12 +56,22 @@ function SearchPage() {
     // Implement the logic to filter the results based on the selected filter values
   };
 
+  const breadcrumbItems = [
+    { label: 'Home', url: '#' },
+    { label: 'Search', url: '#' },
+    { label: searchTerm, url: '#', active: true },
+  ];
+
   return (
     <div>
+        <section>
+        <Breadcrumbs items={breadcrumbItems} /> {/* Render the Breadcrumbs component */}
+        </section>
+        
       <section className={`${searchpage.myMainSection}`}>
-        <div className="container">
+        <div className="container-fluid">
           <div className="row">
-            <div className="col-lg-3">
+          <div className={`col-lg-2 ${searchpage.stickyFilters}`}>
               <h5>Filter By</h5>
               <Form>
                 <Form.Group className="mb-3" controlId="searchFilter">
@@ -228,13 +239,19 @@ function SearchPage() {
                 </Button>
               </Form>
             </div>
-            <div className="col-lg-7">
+            <div className="col-lg-7 overflow-auto">
               <h5>Search Results</h5>
               <ServiceCard />
+              <ServiceCard />
+              <ServiceCard />
+              <ServiceCard />
+              <ServiceCard />
+              <ServiceCard />
+
             </div>
-            <div className="col-lg-2">
+            <div className="col-lg-3">
               <h5>Adsense</h5>
-              <img src="https://dummyimage.com/300x250/ccc/000" alt="Adsense" />
+              <img src="https://dummyimage.com/300x250/ccc/000" width='100%' alt="Adsense" />
             </div>
           </div>
         </div>
