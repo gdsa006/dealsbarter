@@ -6,7 +6,7 @@ import styles from './ServiceCard.module.css'; // Import CSS module styles
 
 const ServiceCard = () => {
   return (
-    <Card className={styles.serviceCard}>
+    <Card className={`${styles.serviceCard} col-md-4`}>
       <div className={styles.serviceContent}>
         <div className={styles.serviceImage}>
           <Card.Img variant="top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSL-HsP6ax6RIUFFEH0teLXfiX2R1rAnYeJVtFJAq5FOlQF3dUZ0MsEMH0g3m6K0vlfb-j7rJ5E0wo&usqp=CAU&ec=48665701" alt="Service Image" />

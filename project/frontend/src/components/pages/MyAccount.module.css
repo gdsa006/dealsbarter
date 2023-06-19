@@ -1,0 +1,19 @@
+.myMainSection{
+    background-color: #fafafa;
+}
+
+.activeLink {
+    background-color:aliceblue;
+    color: #2c8cf4 !important;
+    font-weight: 600;
+  }
+
+  .link{
+    color: #757575;
+  }
+
+  .content{
+    background-color: #ffffff;
+    padding: 30px;
+    border: solid 1px #f1f1f1;
+  }

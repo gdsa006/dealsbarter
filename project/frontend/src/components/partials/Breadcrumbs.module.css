@@ -6,6 +6,8 @@
   .customBreadcrumb ol{
     background-color: #fafafa;
     margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
   }
   
   .customBreadcrumb .breadcrumb-item + .breadcrumb-item::before {
@@ -16,4 +18,7 @@
   
   .customBreadcrumb .breadcrumb-item:first-child::before {
     content: none; /* Remove the arrow icon from the first breadcrumb item */
+  }
+  .mySection{
+    background-color: #fafafa;
   }

@@ -16,6 +16,7 @@ import WebFont from 'webfontloader';
 import { LocationProvider } from './LocationContext';
 import SearchPage from './components/pages/SearchPage';
 import SingleService from './components/pages/SingleService';
+import MyAccount from './components/pages/MyAccount';
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
             <Route path="/post-ad/" element={<PostAd />} />
             <Route path="/search-page/" element={<SearchPage />} />
             <Route path="/service/single/" element={<SingleService />} />
+            <Route path="/my-account" element={<MyAccount />} />
           </Routes>
           <Footer />
         </div>

@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import ServiceCard from '../partials/ServiceCard';
 import Breadcrumbs from '../partials/Breadcrumbs';
+import OtherPageHeader from '../partials/OtherPageHeader';
 
 function SearchPage() {
   const location = useLocation();
@@ -64,12 +65,12 @@ function SearchPage() {
 
   return (
     <div>
-        <section>
         <Breadcrumbs items={breadcrumbItems} /> {/* Render the Breadcrumbs component */}
-        </section>
-        
+        <OtherPageHeader title="Search" />
+
       <section className={`${searchpage.myMainSection}`}>
         <div className="container-fluid">
+            <div className='col-md-12'>
           <div className="row">
           <div className={`col-lg-2 ${searchpage.stickyFilters}`}>
               <h5>Filter By</h5>
@@ -239,20 +240,22 @@ function SearchPage() {
                 </Button>
               </Form>
             </div>
-            <div className="col-lg-7 overflow-auto">
+            <div className="col-lg-10 overflow-auto">
               <h5>Search Results</h5>
+              <div className='row'>
               <ServiceCard />
               <ServiceCard />
               <ServiceCard />
               <ServiceCard />
               <ServiceCard />
               <ServiceCard />
-
+              </div>
             </div>
-            <div className="col-lg-3">
+            {/* <div className="col-lg-3">
               <h5>Adsense</h5>
               <img src="https://dummyimage.com/300x250/ccc/000" width='100%' alt="Adsense" />
-            </div>
+            </div> */}
+          </div>
           </div>
         </div>
       </section>
