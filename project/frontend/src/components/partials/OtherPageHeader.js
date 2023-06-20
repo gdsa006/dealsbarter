@@ -6,7 +6,7 @@ function OtherPageHeader(props) {
     return (
         <>
             <section className={otherpageheader.mySection}>
-                <Container fluid>
+                <Container>
                     <Col md={12}>
                         <h2>{props.title}</h2>
                     </Col>

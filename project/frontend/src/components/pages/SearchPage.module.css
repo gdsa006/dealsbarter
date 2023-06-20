@@ -26,6 +26,7 @@
   /* Accordion card body */
   .cardBody {
     padding: 0.75rem 1.25rem;
+    background-color: #ffffff;
   }
   
   /* Accordion toggle button */

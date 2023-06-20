@@ -5,7 +5,7 @@ import styles from './Breadcrumbs.module.css';
 const Breadcrumbs = ({ items }) => {
     return (
         <section className={styles.mySection}>
-            <Container fluid>
+            <Container>
                 <div className='col-md-12'>
                     <Breadcrumb className={styles.customBreadcrumb}>
                         {items.map((item, index) => (

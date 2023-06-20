@@ -1,10 +1,24 @@
 import React from 'react';
 import myads from './MyAds.module.css';
+import { Row } from 'react-bootstrap';
+import ServiceCard from './ServiceCard';
 
 function MyAds() {
   return (
     <>
-        <h1>MyAds</h1>
+      <h3 className={myads.title}>My Ads</h3>
+      <Row>
+        <ServiceCard />
+        <ServiceCard />
+        <ServiceCard />
+        <ServiceCard />
+        <ServiceCard />
+        <ServiceCard />
+        <ServiceCard />
+        <ServiceCard />
+        <ServiceCard />
+        <ServiceCard />
+      </Row>
     </>
   );
 }

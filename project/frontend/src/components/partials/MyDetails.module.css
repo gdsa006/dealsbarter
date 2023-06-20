@@ -1,0 +1,19 @@
+/* MyDetails.module.css */
+
+.formRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .formGroup {
+    flex-basis: calc(50% - 10px);
+    margin-right: 10px;
+  }
+  
+  /* Adjust the styles as needed */
+  .title{
+    margin-bottom: 20px;
+    font-size: 22px;
+    font-weight: bold;
+}

@@ -69,10 +69,10 @@ function SearchPage() {
         <OtherPageHeader title="Search" />
 
       <section className={`${searchpage.myMainSection}`}>
-        <div className="container-fluid">
+        <div className="container">
             <div className='col-md-12'>
           <div className="row">
-          <div className={`col-lg-2 ${searchpage.stickyFilters}`}>
+          <div className={`col-lg-3 ${searchpage.stickyFilters}`}>
               <h5>Filter By</h5>
               <Form>
                 <Form.Group className="mb-3" controlId="searchFilter">
@@ -161,7 +161,7 @@ function SearchPage() {
                     </h5>
                   </Card.Header>
                   <Collapse in={selectedOfferer || selectedSeeker}>
-                    <Card.Body>
+                  <Card.Body className={searchpage.cardBody}>
                       <Form.Group className="mb-3">
                         <Form.Check
                           type="checkbox"
@@ -189,7 +189,7 @@ function SearchPage() {
                     </h5>
                   </Card.Header>
                   <Collapse in={selectedFullBarter || selectedPartialBarter}>
-                    <Card.Body>
+                  <Card.Body className={searchpage.cardBody}>
                       <Form.Group className="mb-3">
                         <Form.Check
                           type="checkbox"
@@ -217,7 +217,7 @@ function SearchPage() {
                     </h5>
                   </Card.Header>
                   <Collapse in={selectedB2C || selectedB2B}>
-                    <Card.Body>
+                  <Card.Body className={searchpage.cardBody}>
                       <Form.Group className="mb-3">
                         <Form.Check
                           type="checkbox"
@@ -240,7 +240,7 @@ function SearchPage() {
                 </Button>
               </Form>
             </div>
-            <div className="col-lg-10 overflow-auto">
+            <div className="col-lg-9 overflow-auto">
               <h5>Search Results</h5>
               <div className='row'>
               <ServiceCard />

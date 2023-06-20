@@ -1,5 +1,5 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
-import { Navbar, Nav, Dropdown, Form, FormControl, Button } from 'react-bootstrap';
+import { Navbar, Nav, Dropdown, Form, FormControl, Button, Container } from 'react-bootstrap';
 import { Row, Col } from 'react-bootstrap';
 import { CSSTransition } from 'react-transition-group';
 import navigation from './Navigation.module.css';
@@ -227,6 +227,7 @@ function Navigation() {
         className={`${navigation.navbar} ${isScrolled ? navigation.scrolled : ''} ${isScrolled ? navigation.shadow : ''
           } ${!isHomePage ? navigation.homepageNavbar : ''} ${!isPostAdPage ? navigation.postadNavbar : ''}`}
       >
+        <Container>
         <Navbar.Brand href="/">
           {!isScrolled ?
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" width="250" height="50">
@@ -258,8 +259,7 @@ function Navigation() {
 
 {location.city ? (
   <Nav.Link
-    className={`${navigation.locationLink} ${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
-      }`}
+    className={`${navigation.locationLink} ${navigation.navbarNavNavLink}`}
   >
     <span className={navigation.navbarNavItemContent}><FontAwesomeIcon icon={faLocationPin} />&nbsp;{city}</span>
   </Nav.Link>
@@ -293,7 +293,7 @@ function Navigation() {
     className={`${isHomePage ? 'd-none' : ''} ${navigation.locationLink} ${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
       }`}
   >
-    <span className={navigation.navbarNavItemContent}><FontAwesomeIcon icon={faLocationPin} />&nbsp;{city}</span>
+    <span className={navigation.navbarNavItemContent}><FontAwesomeIcon icon={faLocationPin} /></span>
   </Nav.Link>
 ) : (
   <>
@@ -329,6 +329,7 @@ function Navigation() {
                 drop="down"
                 style={{ left: 'auto', right: 'auto', marginLeft: '-42px' }}
                 menuProps={{ style: { left: 'auto' } }}
+                className={navigation.dropdown}
               >
                 <Dropdown.Item disabled className="d-none">
                   Categories
@@ -408,6 +409,7 @@ function Navigation() {
             </Dropdown>
           </Nav>
         </Navbar.Collapse>
+        </Container>
       </Navbar>
 
       {/* Popup for login/register */}

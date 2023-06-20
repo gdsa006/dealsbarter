@@ -4,7 +4,7 @@ import mysettings from './MySettings.module.css';
 function MySettings() {
   return (
     <>
-        <h1>MySettings</h1>
+      <h3 className={mysettings.title}>My Details</h3>
     </>
   );
 }

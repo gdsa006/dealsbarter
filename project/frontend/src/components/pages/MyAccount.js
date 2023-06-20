@@ -40,10 +40,10 @@ function MyAccount() {
         <Breadcrumbs items={breadcrumbItems} /> {/* Render the Breadcrumbs component */}
 <OtherPageHeader title="My Account" />
       <section className={`${myaccount.myMainSection}`}>
-        <Container fluid>
+        <Container>
             <Col md={12}>
           <Row>
-            <Col sm={2}>
+            <Col sm={3}>
               <Nav
                 defaultActiveKey="/mydashboard"
                 className="flex-column"
@@ -64,7 +64,7 @@ function MyAccount() {
                 </Nav.Link>
               </Nav>
             </Col>
-            <Col sm={10}>
+            <Col sm={9}>
                 <div className={myaccount.content}>
                 {renderContent()}
                 </div>
