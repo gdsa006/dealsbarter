@@ -10,6 +10,7 @@ import PrimaryButton from '../partials/PrimaryButton';
 import { useLocation, Link } from 'react-router-dom';
 import CategoryImage from '../../images/pexels-photo-1547248.webp'; // Import your logo image
 import { LocationContext } from '../../LocationContext';
+import ShowPopup from '../partials/ShowPopup';
 
 function Navigation() {
   const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
@@ -18,6 +19,19 @@ function Navigation() {
   const { updateLocation } = useContext(LocationContext);
   const { location, detectLocation } = useContext(LocationContext);
   const { city } = location;
+  const [isScrolled, setIsScrolled] = useState(false);
+  const path = useLocation();
+  const isHomePage = path.pathname === '/';
+  const isPostAdPage = path.pathname === '/';
+  const [selectedCity, setSelectedCity] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [showPopup, setShowPopup] = useState(false);
+  const [username, setUsername] = useState('');
+  const [LoggedInUser, setLoggedInUser] = useState(false);
+
+  const openPopup = () => {
+    setShowPopup(true);
+  };
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
@@ -33,16 +47,10 @@ function Navigation() {
     setShowExploreDropdown((prevValue) => !prevValue);
   };
 
-
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
   const exploreDropdownRef = useRef(null);
   let timeoutRef = null;
-
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  const [showPopup, setShowPopup] = useState(false);
-  const [activeTab, setActiveTab] = useState('login');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,7 +61,6 @@ function Navigation() {
         setIsScrolled(false);
       }
     };
-
 
     window.addEventListener('scroll', handleScroll);
     return () => {
@@ -85,10 +92,6 @@ function Navigation() {
     };
   }, []);
 
-
-
-
-
   const handleDropdownToggle = () => {
     clearTimeout(timeoutRef);
     setShowDropdown(!showDropdown);
@@ -105,33 +108,6 @@ function Navigation() {
       setShowDropdown(false);
     }, 300); // Adjust the duration (in milliseconds) as needed
   };
-
-  const openPopup = () => {
-    setShowPopup(true);
-  };
-
-  const closePopup = () => {
-    setShowPopup(false);
-  };
-
-  const switchTab = (tab) => {
-    setActiveTab(tab);
-  };
-
-  const handleLoginSubmit = (e) => {
-    e.preventDefault();
-    // Handle login form submission
-  };
-
-  const handleRegisterSubmit = (e) => {
-    e.preventDefault();
-    // Handle register form submission
-  };
-
-  const path = useLocation();
-  const isHomePage = path.pathname === '/';
-  const isPostAdPage = path.pathname === '/';
-
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -151,7 +127,6 @@ function Navigation() {
   async function fetchCityAndState(latitude, longitude) {
     const apiKey = 'AIzaSyB701mTHnvBY9CQqUli-vkWoTclJFGwX94'; // Replace with your Google Maps API key
     const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`;
-
     try {
       const response = await fetch(apiUrl);
       const data = await response.json();
@@ -178,7 +153,6 @@ function Navigation() {
             break;
           }
         }
-
         console.log("City: " + city);
         console.log("State: " + state);
         updateLocation({
@@ -192,10 +166,6 @@ function Navigation() {
       console.log("Error fetching data:", error);
     }
   }
-
-
-  const [selectedCity, setSelectedCity] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
 
   function openLocationPopup() {
     const location = prompt('Enter a location:');
@@ -218,7 +188,6 @@ function Navigation() {
     }
   }
 
-
   return (
     <>
       <Navbar
@@ -228,313 +197,179 @@ function Navigation() {
           } ${!isHomePage ? navigation.homepageNavbar : ''} ${!isPostAdPage ? navigation.postadNavbar : ''}`}
       >
         <Container>
-        <Navbar.Brand href="/">
-          {!isScrolled ?
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" width="250" height="50">
-              <text x="0" y="37" font-family="Playfair Display" font-size="30" font-weight="600" fill="#ffffff">dealsBarter.com</text>
-            </svg>
-            :
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" width="250" height="50">
-              <text x="0" y="37" font-family="Playfair Display" font-size="30" font-weight="600" fill="#ffffff">dealsBarter.com</text>
-            </svg>
-          }
-          {/* <img src={logo} alt="Logo" className={navigation.logo} /> Include your logo image here */}
-        </Navbar.Brand>
-
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          {(isScrolled || !isHomePage) && (
-            <Nav className={`ml-auto ${navigation.navbarNav} ${!isPostAdPage ? '' : ''}`}>
-              <Form inline className={`${navigation.searchForm} ml-auto`}>
-                <FormControl type="text" placeholder="Search" className={navigation.searchInput} />
-                <Button variant="outline-primary" className={navigation.searchButton}>
-                  <FontAwesomeIcon icon={faSearch} />
-                </Button>
-              </Form>
-            </Nav>
-          )}
-
-
-<Nav className={`ml-auto ${navigation.navbarNav} ${navigation.navbarNavLocation} ${!isPostAdPage ? navigation.postAdPageLocationNav : ''}`}>
-
-{location.city ? (
-  <Nav.Link
-    className={`${navigation.locationLink} ${navigation.navbarNavNavLink}`}
-  >
-    <span className={navigation.navbarNavItemContent}><FontAwesomeIcon icon={faLocationPin} />&nbsp;{city}</span>
-  </Nav.Link>
-) : (
-  <>
-  <Nav.Link
-    onClick={detectLocation}
-    className={`${navigation.locationLink} ${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
-      }`}
-  >
-    <span className={navigation.navbarNavItemContent}>Detect Location</span>
-  </Nav.Link>
- 
-  <Nav.Link
-    onClick={detectLocation}
-    className={`${navigation.locationLink} ${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
-      }`}
-  >
-    <span className={navigation.navbarNavItemContent} onClick={openLocationPopup}>Change Location</span>
-  </Nav.Link>
-  </>
-)}
-
-</Nav>
-
-          <Nav className={`ml-auto ${navigation.navbarNav} ${!isPostAdPage ? navigation.postAdPage : ''}`}>
-
-
-          {location.city ? (
-  <Nav.Link
-    className={`${isHomePage ? 'd-none' : ''} ${navigation.locationLink} ${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
-      }`}
-  >
-    <span className={navigation.navbarNavItemContent}><FontAwesomeIcon icon={faLocationPin} /></span>
-  </Nav.Link>
-) : (
-  <>
-  <Nav.Link
-    onClick={detectLocation}
-    className={`${isHomePage ? 'd-none' : ''} ${navigation.locationLink} ${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
-      }`}
-  >
-    <span className={navigation.navbarNavItemContent}>Detect Location</span>
-  </Nav.Link>
- 
-  <Nav.Link
-    onClick={detectLocation}
-    className={`${isHomePage ? 'd-none' : ''} ${navigation.locationLink} ${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
-      }`}
-  >
-    <span className={navigation.navbarNavItemContent} onClick={openLocationPopup}>Change Location</span>
-  </Nav.Link>
-  </>
-)}
-
-            <Nav.Link
-              onClick={handleExploreClick}
-              className={`${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
-                }`}
-            >
-              <span className={navigation.navbarNavItemContent}>Explore</span>
-            </Nav.Link>
-            {showExploreDropdown && (
-              <Dropdown.Menu
-                show={showExploreDropdown}
-                align="end"
-                drop="down"
-                style={{ left: 'auto', right: 'auto', marginLeft: '-42px' }}
-                menuProps={{ style: { left: 'auto' } }}
-                className={navigation.dropdown}
-              >
-                <Dropdown.Item disabled className="d-none">
-                  Categories
-                </Dropdown.Item>
-                {!selectedCategory && (
-                  <>
-                    <Dropdown.Item onClick={() => handleCategoryClick('Products')}>Products</Dropdown.Item>
-                    <Dropdown.Item onClick={() => handleCategoryClick('Services')}>Services</Dropdown.Item>
-                  </>
-                )}
-                {selectedCategory && (
-                  <>
-                    <Dropdown.Item onClick={handleBackButtonClick}>
-                      <FontAwesomeIcon icon={faAngleLeft} /> Back to Categories
-                    </Dropdown.Item>
-                    {selectedCategory === 'Services' && (
-                      <>
-                        <Dropdown.Item>Health & Wellness</Dropdown.Item>
-                        <Dropdown.Item>Immigration Services</Dropdown.Item>
-                        <Dropdown.Item>Finance</Dropdown.Item>
-                        <Dropdown.Item>Professional Services</Dropdown.Item>
-                        <Dropdown.Item>Education</Dropdown.Item>
-                        <Dropdown.Item>Sports & Games</Dropdown.Item>
-                        <Dropdown.Item>Repair</Dropdown.Item>
-                        {/* Add more product items */}
-                      </>
-                    )}
-                    {selectedCategory === 'Products' && (
-                      <>
-                        <Dropdown.Item>Electronic</Dropdown.Item>
-                        <Dropdown.Item>Furniture</Dropdown.Item>
-                        <Dropdown.Item>Household</Dropdown.Item>
-                        <Dropdown.Item>Fitness & Sports</Dropdown.Item>
-                        <Dropdown.Item>Automobiles</Dropdown.Item>
-                        <Dropdown.Item>Property</Dropdown.Item>
-                        {/* Add more service items */}
-                      </>
-                    )}
-                  </>
-                )}
-              </Dropdown.Menu>
+          <Navbar.Brand href="/">
+            {!isScrolled ?
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" width="250" height="50">
+                <text x="0" y="37" font-family="Playfair Display" font-size="30" font-weight="600" fill="#ffffff">dealsBarter.com</text>
+              </svg>
+              :
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" width="250" height="50">
+                <text x="0" y="37" font-family="Playfair Display" font-size="30" font-weight="600" fill="#ffffff">dealsBarter.com</text>
+              </svg>
+            }
+            {/* <img src={logo} alt="Logo" className={navigation.logo} /> Include your logo image here */}
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            {(isScrolled || !isHomePage) && (
+              <Nav className={`ml-auto ${navigation.navbarNav} ${!isPostAdPage ? '' : ''}`}>
+                <Form inline className={`${navigation.searchForm} ml-auto`}>
+                  <FormControl type="text" placeholder="Search" className={navigation.searchInput} />
+                  <Button variant="outline-primary" className={navigation.searchButton}>
+                    <FontAwesomeIcon icon={faSearch} />
+                  </Button>
+                </Form>
+              </Nav>
             )}
+            <Nav className={`ml-auto ${navigation.navbarNav} ${navigation.navbarNavLocation} ${!isPostAdPage ? navigation.postAdPageLocationNav : ''}`}>
+              {location.city ? (
+                <Nav.Link
+                  className={`${navigation.locationLink} ${navigation.navbarNavNavLink}`}
+                >
+                  <span className={navigation.navbarNavItemContent}><FontAwesomeIcon icon={faLocationPin} />&nbsp;{city}</span>
+                </Nav.Link>
+              ) : (
+                <>
+                  <Nav.Link
+                    onClick={detectLocation}
+                    className={`${navigation.locationLink} ${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
+                      }`}
+                  >
+                    <span className={navigation.navbarNavItemContent}>Detect Location</span>
+                  </Nav.Link>
 
-            <Nav.Link as={Link} className={`${navigation.navbarNavNavLink} ${navigation.exploreLink}`}>
-              <span className={navigation.navbarNavItemContent} onClick={openPopup}>
-                <FontAwesomeIcon icon={faUser} />
-              </span>
-            </Nav.Link>
+                  <Nav.Link
+                    onClick={detectLocation}
+                    className={`${navigation.locationLink} ${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
+                      }`}
+                  >
+                    <span className={navigation.navbarNavItemContent} onClick={openLocationPopup}>Change Location</span>
+                  </Nav.Link>
+                </>
+              )}
+            </Nav>
+            <Nav className={`ml-auto ${navigation.navbarNav} ${!isPostAdPage ? navigation.postAdPage : ''}`}>
+              {location.city ? (
+                <Nav.Link
+                  className={`${isHomePage ? 'd-none' : ''} ${navigation.locationLink} ${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
+                    }`}
+                >
+                  <span className={navigation.navbarNavItemContent}><FontAwesomeIcon icon={faLocationPin} /></span>
+                </Nav.Link>
+              ) : (
+                <>
+                  <Nav.Link
+                    onClick={detectLocation}
+                    className={`${isHomePage ? 'd-none' : ''} ${navigation.locationLink} ${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
+                      }`}
+                  >
+                    <span className={navigation.navbarNavItemContent}>Detect Location</span>
+                  </Nav.Link>
 
-            <Nav.Link className={` ${!isPostAdPage ? '' : ''} `}>
-              <PrimaryButton />
-            </Nav.Link>
-            {/* Dropdown menu for login/register */}
-            <Dropdown
-              show={showDropdown}
-              onMouseEnter={handleDropdownMouseEnter}
-              onMouseLeave={handleDropdownMouseLeave}
-              onClick={handleDropdownToggle}
-              className="hidden d-none"
-            >
-              <Dropdown.Toggle id="more-dropdown">
-                <FontAwesomeIcon icon={faUser} />
-              </Dropdown.Toggle>
-              <CSSTransition
-                in={showDropdown}
-                timeout={300}
-                classNames="dropdown-menu"
-                unmountOnExit
+                  <Nav.Link
+                    onClick={detectLocation}
+                    className={`${isHomePage ? 'd-none' : ''} ${navigation.locationLink} ${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
+                      }`}
+                  >
+                    <span className={navigation.navbarNavItemContent} onClick={openLocationPopup}>Change Location</span>
+                  </Nav.Link>
+                </>
+              )}
+              <Nav.Link
+                onClick={handleExploreClick}
+                className={`${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
+                  }`}
               >
-                <Dropdown.Menu className={`dropdown-menu-right ${navigation.dropdownMenu}`}>
-                  <Dropdown.Item className={navigation.dropdownItem} onClick={openPopup}>
-                    Login/Register
+                <span className={navigation.navbarNavItemContent}>Explore</span>
+              </Nav.Link>
+              {showExploreDropdown && (
+                <Dropdown.Menu
+                  show={showExploreDropdown}
+                  align="end"
+                  drop="down"
+                  style={{ left: 'auto', right: 'auto', marginLeft: '-42px' }}
+                  menuProps={{ style: { left: 'auto' } }}
+                  className={navigation.dropdown}
+                >
+                  <Dropdown.Item disabled className="d-none">
+                    Categories
                   </Dropdown.Item>
-                  {/* Your existing code */}
+                  {!selectedCategory && (
+                    <>
+                      <Dropdown.Item onClick={() => handleCategoryClick('Products')}>Products</Dropdown.Item>
+                      <Dropdown.Item onClick={() => handleCategoryClick('Services')}>Services</Dropdown.Item>
+                    </>
+                  )}
+                  {selectedCategory && (
+                    <>
+                      <Dropdown.Item onClick={handleBackButtonClick}>
+                        <FontAwesomeIcon icon={faAngleLeft} /> Back to Categories
+                      </Dropdown.Item>
+                      {selectedCategory === 'Services' && (
+                        <>
+                          <Dropdown.Item>Health & Wellness</Dropdown.Item>
+                          <Dropdown.Item>Immigration Services</Dropdown.Item>
+                          <Dropdown.Item>Finance</Dropdown.Item>
+                          <Dropdown.Item>Professional Services</Dropdown.Item>
+                          <Dropdown.Item>Education</Dropdown.Item>
+                          <Dropdown.Item>Sports & Games</Dropdown.Item>
+                          <Dropdown.Item>Repair</Dropdown.Item>
+                          {/* Add more product items */}
+                        </>
+                      )}
+                      {selectedCategory === 'Products' && (
+                        <>
+                          <Dropdown.Item>Electronic</Dropdown.Item>
+                          <Dropdown.Item>Furniture</Dropdown.Item>
+                          <Dropdown.Item>Household</Dropdown.Item>
+                          <Dropdown.Item>Fitness & Sports</Dropdown.Item>
+                          <Dropdown.Item>Automobiles</Dropdown.Item>
+                          <Dropdown.Item>Property</Dropdown.Item>
+                          {/* Add more service items */}
+                        </>
+                      )}
+                    </>
+                  )}
                 </Dropdown.Menu>
-              </CSSTransition>
-            </Dropdown>
-          </Nav>
-        </Navbar.Collapse>
+              )}
+              <Nav.Link as={Link} className={`${navigation.navbarNavNavLink} ${navigation.exploreLink}`}>
+                <span className={navigation.navbarNavItemContent} onClick={openPopup}>
+                  {localStorage.getItem('username') ?  localStorage.getItem('username') :<FontAwesomeIcon icon={faUser} />}
+                </span>
+              </Nav.Link>
+              <Nav.Link className={` ${!isPostAdPage ? '' : ''} `}>
+                <PrimaryButton />
+              </Nav.Link>
+              {/* Dropdown menu for login/register */}
+              <Dropdown
+                show={showDropdown}
+                onMouseEnter={handleDropdownMouseEnter}
+                onMouseLeave={handleDropdownMouseLeave}
+                onClick={handleDropdownToggle}
+                className="hidden d-none"
+              >
+                <Dropdown.Toggle id="more-dropdown">
+                  <FontAwesomeIcon icon={faUser} />
+                </Dropdown.Toggle>
+                <CSSTransition
+                  in={showDropdown}
+                  timeout={300}
+                  classNames="dropdown-menu"
+                  unmountOnExit
+                >
+                  <Dropdown.Menu className={`dropdown-menu-right ${navigation.dropdownMenu}`}>
+                    <Dropdown.Item className={navigation.dropdownItem} onClick={openPopup}>
+                      Login/Register
+                    </Dropdown.Item>
+                    {/* Your existing code */}
+                  </Dropdown.Menu>
+                </CSSTransition>
+              </Dropdown>
+            </Nav>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
-
-      {/* Popup for login/register */}
-      {showPopup && (
-        <div className={navigation.popup}>
-          <div className={navigation.popupContent}>
-            <button className={navigation.closeButton} onClick={closePopup}>
-              &times;
-            </button>
-            <div className={navigation.tabButtons}>
-              <button
-                className={`${navigation.tabButton} ${activeTab === 'login' ? navigation.activeTab : ''}`}
-                onClick={() => switchTab('login')}
-              >
-                Login
-              </button>
-              <button
-                className={`${navigation.tabButton} ${activeTab === 'register' ? navigation.activeTab : ''}`}
-                onClick={() => switchTab('register')}
-              >
-                Register
-              </button>
-            </div>
-            <div className={navigation.tabContent}>
-              {activeTab === 'login' && (
-                <form onSubmit={handleLoginSubmit}>
-                  <div className={`mb-3 ${navigation.formGroup}`}>
-                    <input
-                      type="text"
-                      id="login-email"
-                      placeholder="Email/Mobile"
-                      className='form-control'
-                      required
-                    />
-                  </div>
-                  <div className={`mb-3 ${navigation.formGroup}`}>
-                    <input
-                      type="password"
-                      id="login-password"
-                      placeholder="Password"
-                      className='form-control'
-                      required
-                    />
-                  </div>
-                  <div className={`mb-3 $navigation.formGroup`}>
-                    <div className={navigation.inlineFormFields}>
-                      <div className={navigation.formField}>
-                        <div className={navigation.rememberMeContainer}>
-                          <input type="checkbox" id="rememberMe" />
-                          <label className='mb-0' htmlFor="rememberMe">Remember me</label>
-                        </div>
-                      </div>
-                      <div className={navigation.formField}>
-                        <a href="#" className={navigation.forgotPasswordLink}>
-                          Forgot password?
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <button type="submit" className={`btn btn-success ${navigation.formButton}`}>
-                    Login
-                  </button>
-                </form>
-              )}
-              {activeTab === 'register' && (
-                <form onSubmit={handleRegisterSubmit}>
-                  <div className={`mb-3 ${navigation.formGroup}`}>
-                    <div className={navigation.inlineFormFields}>
-                      <div className={navigation.formField}>
-                        <input
-                          type="text"
-                          id="login-first-name"
-                          placeholder="First Name"
-                          className='form-control'
-                          required
-                        />
-                      </div>
-                      <div className={navigation.formField}>
-                        <input
-                          type="text"
-                          id="login-last-name"
-                          placeholder="Last Name"
-                          className='form-control'
-                          required
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className={`mb-3 ${navigation.formGroup}`}>
-                    <input
-                      type="text"
-                      id="login-email"
-                      placeholder="Email/Mobile"
-                      className='form-control'
-                      required
-                    />
-                  </div>
-                  <div className={`mb-3 ${navigation.formGroup}`}>
-                    <input
-                      type="password"
-                      id="login-password"
-                      placeholder="Password"
-                      className='form-control'
-                      required
-                    />
-                  </div>
-                  <div className={`mb-3 ${navigation.formGroup}`}>
-                    <select className='form-control' id="howDidYouHear">
-                      <option value="">How did you hear about us?</option>
-                      <option value="friend">Friend/Colleague</option>
-                      <option value="socialMedia">Social Media</option>
-                    </select>
-                  </div>
-                  <div className={navigation.formGroup}>
-                    <p style={{ fontSize: '11px' }}>I agree to the <a href=''>Terms of Use</a>, <a href='#'>DPA</a> and <a href='#'>Privacy Notice</a> upon signup. </p>
-                  </div>
-                  <button type="submit" className={`btn btn-success ${navigation.formButton}`}>
-                    Register
-                  </button>
-                </form>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
+      <ShowPopup isOpen={showPopup} onClose={setShowPopup} setUsername={setLoggedInUser} />
     </>
   );
 }
