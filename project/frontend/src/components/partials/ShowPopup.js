@@ -23,6 +23,8 @@ function ShowPopup({ isOpen, onClose, setUsername }) {
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false); // New isLoggedIn state
 
+    const baseUrl = process.env.REACT_APP_BASE_URL;
+
     const closePopup = () => {
         onClose(false);
     };
@@ -32,7 +34,7 @@ function ShowPopup({ isOpen, onClose, setUsername }) {
     };
 
     const api = axios.create({
-        baseURL: 'http://localhost:8000',
+        baseURL: baseUrl,
         timeout: 5000, // Request timeout in milliseconds
         headers: {
             'Content-Type': 'application/json',
