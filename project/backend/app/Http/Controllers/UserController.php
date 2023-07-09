@@ -84,14 +84,14 @@ class UserController extends Controller
             'last_name' => 'required',
             'email' => 'required',
             'password' => 'required|min:6',
-            'how_hear_about_us' => 'nullable|string|max:255',
-            'about' => 'nullable|string|max:255', // Add the "about" field validation rules
-            'profile_photo' => 'nullable|string|max:255', // Add the "about" field validation rules
+            'how_hear_about_us' => 'nullable|string|max:255'
         ]);
 
         $validatedData['name'] = $validatedData['first_name'] . ' ' . $validatedData['last_name'];
         $validatedData['password'] = bcrypt($request->password);
         $validatedData['api_token'] = Str::random(60); // Generate a random API token
+        $validatedData['about'] = ''; // Set empty value for the "about" field
+        $validatedData['profile_photo'] = 'dummy.jpg'; // Set empty value for the "about" field
 
         // Check if the user already exists
         $existingUser = User::where('email', $validatedData['email'])->first();
