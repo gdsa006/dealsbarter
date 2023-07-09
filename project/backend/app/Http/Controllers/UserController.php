@@ -85,6 +85,8 @@ class UserController extends Controller
             'email' => 'required',
             'password' => 'required|min:6',
             'how_hear_about_us' => 'nullable|string|max:255',
+            'about' => 'nullable|string|max:255', // Add the "about" field validation rules
+            'profile_photo' => 'nullable|string|max:255', // Add the "about" field validation rules
         ]);
 
         $validatedData['name'] = $validatedData['first_name'] . ' ' . $validatedData['last_name'];
