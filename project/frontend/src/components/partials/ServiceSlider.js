@@ -26,12 +26,12 @@ const ServiceSlider = () => {
                     <div className="col-md-10 offser-md-1">
                         <div className={slider.sliderContainer}>
                             <Slider {...settings}>
-                                <ServiceCard image="path/to/image1.jpg" serviceName="Service 1" />
+                                {/* <ServiceCard image="path/to/image1.jpg" serviceName="Service 1" />
                                 <ServiceCard image="path/to/image2.jpg" serviceName="Service 2" />
                                 <ServiceCard image="path/to/image3.jpg" serviceName="Service 3" />
                                 <ServiceCard image="path/to/image1.jpg" serviceName="Service 1" />
                                 <ServiceCard image="path/to/image2.jpg" serviceName="Service 2" />
-                                <ServiceCard image="path/to/image3.jpg" serviceName="Service 3" />
+                                <ServiceCard image="path/to/image3.jpg" serviceName="Service 3" /> */}
                                 {/* Add more ServiceCard components as needed */}
                             </Slider>
                         </div>

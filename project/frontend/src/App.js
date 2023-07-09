@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import AuthenticatedRoute from './AuthenticatedRoute';
+import AuthenticatedRoute from './components/AuthenticatedRoute';
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -17,9 +17,13 @@ import { LocationProvider } from './LocationContext';
 import SearchPage from './components/pages/SearchPage';
 import SingleService from './components/pages/SingleService';
 import MyAccount from './components/pages/MyAccount';
+import ShowPopup from './components/partials/ShowPopup';
+import SingleSubCategory from './components/pages/SingleSubCategory';
 
 
 function App() {
+
+  const [showPopup, setShowPopup] = useState(false);
 
   const checkIfUserIsLoggedIn = () => {
     const token = localStorage.getItem('token');
@@ -35,6 +39,14 @@ function App() {
       },
     });
   }, []);
+
+  const handleLoginRedirect = () => {
+    setShowPopup(true);
+  };
+
+  const handlePopupClose = () => {
+    setShowPopup(false);
+  };
   return (
     <div className="App">
       <LocationProvider>
@@ -48,14 +60,15 @@ function App() {
               <Route path="/contact-us/" element={<ContactUs />} />
               <Route path="/post-ad/" element={<PostAd />} />
               <Route path="/search-page/" element={<SearchPage />} />
-              <Route path="/service/single/" element={<SingleService />} />
+              <Route path="/service/:category/:subcategory" element={<SingleSubCategory />} />
+              <Route path="/service/:category/:subcategory/:listing" element={<SingleService />} />
               <Route
                 path="/my-account"
                 element={
                   isLoggedIn ? (
                     <MyAccount />
                   ) : (
-                    <Navigate to="/" replace={true} />
+                    <ShowPopup isOpen={true} onClose={handlePopupClose} setUsername={() => { }} />
                   )
                 }
               />

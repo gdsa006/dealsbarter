@@ -4,31 +4,59 @@ import styles from './SingleService.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTags, faUser, faBullseye, faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
 import Faq from '../partials/Faq';
+import { useParams } from 'react-router-dom';
+import axios from 'axios'; // Import axios
 
 const SingleService = () => {
+    const { category, subcategory, listing } = useParams();
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
-    const images = [
-        'https://dummyimage.com/800x600/000/fff&text=Image+1',
-        'https://dummyimage.com/800x600/000/fff&text=Image+2',
-        'https://dummyimage.com/800x600/000/fff&text=Image+3',
-        'https://dummyimage.com/800x600/000/fff&text=Image+4',
-        // Add more image URLs as needed
-    ];
+    const [data, setData] = useState();
+    const [title, setTitle] = useState();
+    const [description, setDescription] = useState();
+    const baseUrl = process.env.REACT_APP_BASE_URL;
+
+    const api = axios.create({
+        baseURL: baseUrl,
+        timeout: 5000, // Request timeout in milliseconds
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    });
+
+    useEffect(() => {
+        fetchListings();
+    }, [listing]);
+
+    const fetchListings = async () => {
+        try {
+            const response = await api.get(`/api/listings/${listing}`);
+            setData(response.data);
+            setTitle(data.title);
+            setDescription(data.description);
+
+        } catch (error) {
+            console.error('Error fetching listings:', error);
+        }
+    };
+
+    const images = data?.images?.map((image) => baseUrl + '/storage/' + image.image) || [];
+    
 
     useEffect(() => {
         let interval;
-
-        if (isPlaying) {
-            interval = setInterval(() => {
-                setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-            }, 3000);
+    
+        if (isPlaying && data?.images?.length) {
+          interval = setInterval(() => {
+            setCurrentImageIndex((prevIndex) => (prevIndex + 1) % data.images.length);
+          }, 3000);
         }
-
+    
         return () => {
-            clearInterval(interval);
+          clearInterval(interval);
         };
-    }, [isPlaying, images.length]);
+      }, [isPlaying, data?.images?.length]);
 
     const toggleSlideShow = () => {
         setIsPlaying((prevState) => !prevState);
@@ -71,7 +99,7 @@ const SingleService = () => {
                         </div>
                     </Col>
                     <Col md={5} className={`${styles.flexColumn} ${styles.justifyContentCenter}`}>
-                        <h2 className={`${styles.title}`}>Service Title</h2>
+                        <h2 className={`${styles.title}`}>{title}</h2>
                         <Button className='btn-block mt-4 mb-2' variant="primary">Learn More</Button>
                         <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</small>
                         <hr className='my-4' />
@@ -80,7 +108,7 @@ const SingleService = () => {
                                 Description
                             </h6>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac tincidunt neque. Integer sagittis dolor vitae dolor interdum, ac elementum est porta.
+                                {description}
                             </p>
                         </div>
                         <div className={`mt-5 ${styles.meta} `}>

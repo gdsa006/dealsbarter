@@ -1,20 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTags, faUser, faBullseye, faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
 import styles from './ServiceCard.module.css'; // Import CSS module styles
+import { useHistory } from 'react-router-dom';
 
-const ServiceCard = () => {
+const ServiceCard = (props) => {
+
+  const handleCardClick = (slug) => {
+    window.location.pathname = '/service/' + props.categorySlug + '/' + props.subcategorySlug + '/' + slug;
+  };
+
+  const baseUrl = process.env.REACT_APP_BASE_URL;
+  console.log(props.image);
+  const imageLink = baseUrl + '/storage/' + props.image;
+
+
+  // ...
+  
+
   return (
-    <Card className={`${styles.serviceCard} col-md-6`}>
+    <Card className={`${styles.serviceCard} ${props.column}`} onClick={() => handleCardClick(props.slug)}>
       <div className={styles.serviceContent}>
         <div className={`${styles.serviceImage} col-md-10`}>
           <Card.Img
             variant="top"
-            src="https://5.imimg.com/data5/OP/SD/LL/SELLER-5315913/samsung-tv-250x250.jpeg"
+            src={imageLink}
             alt="Service Image"
           />
-          <h5 className={`${styles.adTitle}`}>Some Ad Title</h5>
+          <h5 className={`${styles.adTitle}`}>{props.title}</h5>
         </div>
         <div className={`${styles.serviceInfo} col-md-2`}>
           <div className={styles.verticalBox}>
@@ -35,7 +49,7 @@ const ServiceCard = () => {
             <h4>Service Title</h4>
           </Card.Title>
           <Card.Text className={styles.serviceDescription}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            {props.description}
           </Card.Text>
           {/* <Button variant="primary">Learn More</Button> */}
           <div className={styles.exchangeWith}>

@@ -243,12 +243,9 @@ function SearchPage() {
             <div className="col-lg-9 overflow-auto">
               <h5>Search Results</h5>
               <div className='row'>
-              <ServiceCard />
-              <ServiceCard />
-              <ServiceCard />
-              <ServiceCard />
-              <ServiceCard />
-              <ServiceCard />
+              <ServiceCard column='col-md-6' key='1' title='34242' />
+              <ServiceCard column='col-md-6' key='2' title='sdfds' />
+           
               </div>
             </div>
             {/* <div className="col-lg-3">

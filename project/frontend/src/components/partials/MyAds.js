@@ -8,16 +8,7 @@ function MyAds() {
     <>
       <h3 className={myads.title}>My Ads</h3>
       <Row>
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
+
       </Row>
     </>
   );

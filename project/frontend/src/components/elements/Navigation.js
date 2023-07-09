@@ -11,11 +11,9 @@ import { useLocation, Link } from 'react-router-dom';
 import CategoryImage from '../../images/pexels-photo-1547248.webp'; // Import your logo image
 import { LocationContext } from '../../LocationContext';
 import ShowPopup from '../partials/ShowPopup';
+import ExploreCategoriesLink from '../partials/ExploreCategoriesLink';
 
-function Navigation() {
-  const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [showExploreDropdown, setShowExploreDropdown] = useState(false);
+function Navigation({ updateUsername }) {
   const { updateLocation } = useContext(LocationContext);
   const { location, detectLocation } = useContext(LocationContext);
   const { city } = location;
@@ -29,22 +27,10 @@ function Navigation() {
   const [username, setUsername] = useState('');
   const [LoggedInUser, setLoggedInUser] = useState(false);
 
+
+
   const openPopup = () => {
     setShowPopup(true);
-  };
-
-  const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
-    setShowCategoriesDropdown(true);
-  };
-
-  const handleBackButtonClick = () => {
-    setShowCategoriesDropdown(false);
-    setSelectedCategory(null);
-  };
-
-  const handleExploreClick = () => {
-    setShowExploreDropdown((prevValue) => !prevValue);
   };
 
   const [showDropdown, setShowDropdown] = useState(false);
@@ -68,29 +54,7 @@ function Navigation() {
     };
   }, []);
 
-  useEffect(() => {
-    const handleDocumentClick = (event) => {
-      if (
-        !event.target.classList.contains(navigation.exploreLink) &&
-        !event.target.closest(`.${navigation.exploreLink}`) &&
-        !event.target.classList.contains('dropdown-item')
-      ) {
-        setShowExploreDropdown(false);
-      }
-    };
-
-    const handleWindowScroll = () => {
-      setShowExploreDropdown(false);
-    };
-
-    document.addEventListener('click', handleDocumentClick);
-    window.addEventListener('scroll', handleWindowScroll);
-
-    return () => {
-      document.removeEventListener('click', handleDocumentClick);
-      window.removeEventListener('scroll', handleWindowScroll);
-    };
-  }, []);
+  
 
   const handleDropdownToggle = () => {
     clearTimeout(timeoutRef);
@@ -226,22 +190,20 @@ function Navigation() {
                 <Nav.Link
                   className={`${navigation.locationLink} ${navigation.navbarNavNavLink}`}
                 >
-                  <span className={navigation.navbarNavItemContent}><FontAwesomeIcon icon={faLocationPin} />&nbsp;{city}</span>
+                  <span className={navigation.navbarNavItemContent}><FontAwesomeIcon icon={faLocationPin} />&nbsp;<span className='d-none'>{city}</span></span>
                 </Nav.Link>
               ) : (
                 <>
                   <Nav.Link
                     onClick={detectLocation}
-                    className={`${navigation.locationLink} ${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
-                      }`}
+                    className={`${navigation.locationLink} ${navigation.navbarNavNavLink} ${navigation.exploreLink} }`}
                   >
                     <span className={navigation.navbarNavItemContent}>Detect Location</span>
                   </Nav.Link>
 
                   <Nav.Link
                     onClick={detectLocation}
-                    className={`${navigation.locationLink} ${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
-                      }`}
+                    className={`${navigation.locationLink} ${navigation.navbarNavNavLink} ${navigation.exploreLink} }`}
                   >
                     <span className={navigation.navbarNavItemContent} onClick={openLocationPopup}>Change Location</span>
                   </Nav.Link>
@@ -251,8 +213,7 @@ function Navigation() {
             <Nav className={`ml-auto ${navigation.navbarNav} ${!isPostAdPage ? navigation.postAdPage : ''}`}>
               {location.city ? (
                 <Nav.Link
-                  className={`${isHomePage ? 'd-none' : ''} ${navigation.locationLink} ${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
-                    }`}
+                  className={`${isHomePage ? 'd-none' : ''} ${navigation.locationLink} ${navigation.navbarNavNavLink} }`}
                 >
                   <span className={navigation.navbarNavItemContent}><FontAwesomeIcon icon={faLocationPin} /></span>
                 </Nav.Link>
@@ -260,81 +221,27 @@ function Navigation() {
                 <>
                   <Nav.Link
                     onClick={detectLocation}
-                    className={`${isHomePage ? 'd-none' : ''} ${navigation.locationLink} ${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
-                      }`}
+                    className={`${isHomePage ? 'd-none' : ''} ${navigation.locationLink} ${navigation.navbarNavNavLink} }`}
                   >
                     <span className={navigation.navbarNavItemContent}>Detect Location</span>
                   </Nav.Link>
 
                   <Nav.Link
                     onClick={detectLocation}
-                    className={`${isHomePage ? 'd-none' : ''} ${navigation.locationLink} ${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
-                      }`}
+                    className={`${isHomePage ? 'd-none' : ''} ${navigation.locationLink} ${navigation.navbarNavNavLink} ${navigation.exploreLink} }`}
                   >
                     <span className={navigation.navbarNavItemContent} onClick={openLocationPopup}>Change Location</span>
                   </Nav.Link>
                 </>
               )}
-              <Nav.Link
-                onClick={handleExploreClick}
-                className={`${navigation.navbarNavNavLink} ${navigation.exploreLink} ${showExploreDropdown ? navigation.NavLinkActive : ''
-                  }`}
-              >
-                <span className={navigation.navbarNavItemContent}>Explore</span>
-              </Nav.Link>
-              {showExploreDropdown && (
-                <Dropdown.Menu
-                  show={showExploreDropdown}
-                  align="end"
-                  drop="down"
-                  style={{ left: 'auto', right: 'auto', marginLeft: '-42px' }}
-                  menuProps={{ style: { left: 'auto' } }}
-                  className={navigation.dropdown}
-                >
-                  <Dropdown.Item disabled className="d-none">
-                    Categories
-                  </Dropdown.Item>
-                  {!selectedCategory && (
-                    <>
-                      <Dropdown.Item onClick={() => handleCategoryClick('Products')}>Products</Dropdown.Item>
-                      <Dropdown.Item onClick={() => handleCategoryClick('Services')}>Services</Dropdown.Item>
-                    </>
-                  )}
-                  {selectedCategory && (
-                    <>
-                      <Dropdown.Item onClick={handleBackButtonClick}>
-                        <FontAwesomeIcon icon={faAngleLeft} /> Back to Categories
-                      </Dropdown.Item>
-                      {selectedCategory === 'Services' && (
-                        <>
-                          <Dropdown.Item>Health & Wellness</Dropdown.Item>
-                          <Dropdown.Item>Immigration Services</Dropdown.Item>
-                          <Dropdown.Item>Finance</Dropdown.Item>
-                          <Dropdown.Item>Professional Services</Dropdown.Item>
-                          <Dropdown.Item>Education</Dropdown.Item>
-                          <Dropdown.Item>Sports & Games</Dropdown.Item>
-                          <Dropdown.Item>Repair</Dropdown.Item>
-                          {/* Add more product items */}
-                        </>
-                      )}
-                      {selectedCategory === 'Products' && (
-                        <>
-                          <Dropdown.Item>Electronic</Dropdown.Item>
-                          <Dropdown.Item>Furniture</Dropdown.Item>
-                          <Dropdown.Item>Household</Dropdown.Item>
-                          <Dropdown.Item>Fitness & Sports</Dropdown.Item>
-                          <Dropdown.Item>Automobiles</Dropdown.Item>
-                          <Dropdown.Item>Property</Dropdown.Item>
-                          {/* Add more service items */}
-                        </>
-                      )}
-                    </>
-                  )}
-                </Dropdown.Menu>
-              )}
-              <Nav.Link as={Link} className={`${navigation.navbarNavNavLink} ${navigation.exploreLink}`}>
+              
+
+
+<ExploreCategoriesLink />
+
+              <Nav.Link as={Link} className={`${navigation.navbarNavNavLink}`}>
                 <span className={navigation.navbarNavItemContent} onClick={openPopup}>
-                  {localStorage.getItem('username') ?  localStorage.getItem('username') :<FontAwesomeIcon icon={faUser} />}
+                  {LoggedInUser ? LoggedInUser : <FontAwesomeIcon icon={faUser} />}
                 </span>
               </Nav.Link>
               <Nav.Link className={` ${!isPostAdPage ? '' : ''} `}>

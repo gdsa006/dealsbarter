@@ -1,5 +1,6 @@
 .myMainSection{
-    background-color: #fafafa;
+    background-color: #ffffff;
+    padding: 0px 0 75px;
 }
 
 .activeLink {
@@ -15,5 +16,5 @@
   .content{
     background-color: #ffffff;
     padding: 30px;
-    border: solid 1px #f1f1f1;
+    box-shadow: 0 4px 7px 0 rgba(0,0,0,.1607843137);
   }

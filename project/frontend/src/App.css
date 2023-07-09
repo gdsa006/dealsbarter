@@ -43,3 +43,8 @@ h1, h2, h3, h4, h5, h6 {
 .dropdownMenu::-webkit-scrollbar-corner {
   background-color: transparent; /* For Chrome, Safari, and Opera */
 }
+
+.Toastify__toast-container Toastify__toast-container--top-right {
+  z-index: 999999999999; /* Set a high z-index value */
+}
+

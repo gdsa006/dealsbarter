@@ -3,11 +3,13 @@ import { Modal } from 'react-bootstrap';
 import PrimaryButton from '../partials/PrimaryButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLocationPin } from '@fortawesome/free-solid-svg-icons';
-import { faLock, faEnvelope, faMobile, faSearch, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import { faLock, faEnvelope, faMobile, faSearch, faAngleLeft, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import showPopupStyles from './ShowPopup.module.css';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ShowPopup({ isOpen, onClose, setUsername }) {
     const [activeTab, setActiveTab] = useState('login');
@@ -22,7 +24,8 @@ function ShowPopup({ isOpen, onClose, setUsername }) {
     const [isPopupVisible, setPopupVisible] = useState(false);
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false); // New isLoggedIn state
-
+    const [isLoggingIn, setIsLoggingIn] = useState(false); // New state for login processing
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false); // New state for success message
     const baseUrl = process.env.REACT_APP_BASE_URL;
 
     const closePopup = () => {
@@ -54,31 +57,48 @@ function ShowPopup({ isOpen, onClose, setUsername }) {
 
     const handleLoginSubmit = (e) => {
         e.preventDefault();
+        setIsLoggingIn(true);
+
         const data = {
             email: loginEmail,
             password: loginPassword,
         };
+
         api
             .post('/api/login', data)
             .then((response) => {
-                if (response.data.api_token) {
+                if (response.data.token) {
                     console.log('Login successful');
                     console.log(response.data);
-                    localStorage.setItem('token', response.data.api_token);
+                    localStorage.setItem('token', response.data.token);
                     localStorage.setItem('username', response.data.username);
                     localStorage.setItem('userId', response.data.id);
-                    setUsername(response.data.username); // Replace 'JohnDoe' with the actual username
-                    setIsLoggedIn(true); // Set isLoggedIn to true when login is successful
-                    navigate('/'); // Redirect to the homepage
-                    onClose(false);
+                    setUsername(response.data.username);
+                    setIsLoggedIn(true);
+                    toast.success('Successfully Logged In'); // Show success notification
+                    setTimeout(() => {
+                        onClose(false);
+                    }, 0);
                 } else {
+                    toast.error('Login failed'); // Show success notification
                     console.log('Login failed');
                 }
             })
             .catch((error) => {
-                console.error(error);
+                if (error.response && error.response.data && error.response.data.error) {
+                  const errorMessage = error.response.data.error;
+                  toast.error(errorMessage);
+                  console.error(errorMessage);
+                } else {
+                  toast.error('Login failed');
+                  console.error('Login failed');
+                }
+              })
+            .finally(() => {
+                setIsLoggingIn(false);
             });
     };
+
 
 
     const handleRegisterSubmit = (e) => {
@@ -96,20 +116,30 @@ function ShowPopup({ isOpen, onClose, setUsername }) {
         api
             .post('/api/register', data)
             .then((response) => {
-                if (response.data.api_token) {
-                    alert('Registration successful');
+                if (response.data.token) {
+                    setTimeout(() => {
+                        onClose(false);
+                    }, 0);
+                    toast.success('Registration successful. Please check your email for the activation link.');
                     console.log('Registration successful');
                     console.log(response.data);
+                    
                 } else if (response.data.error) {
+                    toast.error('Registration failed:' + response.data.error);
                     console.log('Registration failed');
-                    alert('Registration failed');
                     console.log(response.data.error);
                 }
             })
             .catch((error) => {
                 console.error(error);
+                toast.error('An error occurred during registration');
             });
     };
+
+    const handleMyAccountClick = () => {
+        navigate('/my-account');
+        onClose(false);
+      };
 
     const handleLogout = () => {
         localStorage.removeItem('token');
@@ -121,9 +151,13 @@ function ShowPopup({ isOpen, onClose, setUsername }) {
         onClose(false)
     };
 
+    
+
     return (
         <>
-            {isOpen && (
+<div style={{ zIndex: 99999999999, position: 'relative' }}>
+                <ToastContainer />
+            </div>            {isOpen && (
                 <div className={showPopupStyles.popup}>
                     <div className={showPopupStyles.popupContent}>
                         <button className={showPopupStyles.closeButton} onClick={closePopup}>
@@ -131,7 +165,7 @@ function ShowPopup({ isOpen, onClose, setUsername }) {
                         </button>
                         {isLoggedIn ? (
                             <div className={showPopupStyles.profilePopupContent}>
-                                <button>Edit Profile</button>
+                                <button onClick={handleMyAccountClick}>My Account</button>
                                 <button onClick={handleLogout}>Logout</button>
                             </div>
                         ) : (
@@ -175,11 +209,23 @@ function ShowPopup({ isOpen, onClose, setUsername }) {
                                                     required
                                                 />
                                             </div>
-                                            <button type="submit" className={`btn btn-success ${showPopupStyles.formButton}`}>
-                                                Login
+                                            <button
+                                                type="submit"
+                                                className={`btn btn-success ${showPopupStyles.formButton} ${isLoggingIn ? showPopupStyles.disabledButton : ''}`}
+                                                disabled={isLoggingIn} // Disable the button when logging in
+                                            >
+                                                {isLoggingIn ? (
+                                                    <>
+                                                        <FontAwesomeIcon icon={faSpinner} spin className={showPopupStyles.spinnerIcon} /> Logging In...
+                                                    </>
+                                                ) : (
+                                                    'Login'
+                                                )}
                                             </button>
                                         </form>
                                     )}
+
+
                                     {activeTab === 'register' && (
                                         <form onSubmit={handleRegisterSubmit}>
                                             <div className="mb-3">
