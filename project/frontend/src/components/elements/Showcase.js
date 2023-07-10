@@ -34,8 +34,8 @@ function Showcase() {
     <section className={`section d-none, ${showcase.mySection}`}>
       <div className="container">
         <div className={`row ${showcase.container}`}>
-          {categories.map(category => (
-            <div className={`col-md-6 ${showcase.column}`} key={category.id}>
+          {categories.map((category, index) => (
+            <div className={`col-md-6 ${showcase.column} ${index === 2 || index === 3 ? showcase.reverse : ''}`} key={category.id}>
               <a href="#" className={showcase.clickableColumn}>
                 <div className={showcase.subColumn}>
                   <div className={showcase.imageContainer}>
