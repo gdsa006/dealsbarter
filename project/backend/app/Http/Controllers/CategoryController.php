@@ -64,7 +64,7 @@ class CategoryController extends Controller
 
     public function getRandomCategories()
     {
-        $randomCategories = Category::inRandomOrder()->take(3)->get();
+        $randomCategories = Category::inRandomOrder()->take(6)->get();
         return response()->json($randomCategories);
     }
 }
