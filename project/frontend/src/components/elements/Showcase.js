@@ -39,7 +39,7 @@ function Showcase() {
               <a href="#" className={showcase.clickableColumn}>
                 <div className={showcase.subColumn}>
                   <div className={showcase.imageContainer}>
-                    <img src={`http://localhost:8000/storage/${category.image}`} alt={category.name} className={showcase.image} />
+                    <img src={`${baseUrl}/storage/${category.image}`} alt={category.name} className={showcase.image} />
                   </div>
                   <div className={showcase.textContainer}>
                     <h3 className={showcase.heading}>{category.name}</h3>

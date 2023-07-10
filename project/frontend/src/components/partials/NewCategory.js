@@ -63,7 +63,7 @@ function NewCategory({ handleCreateCategory }) {
             <Row>
                 {categories.map(category => (
                     <Card key={category.id} className="col-md-3 mb-4">
-                        <Card.Img variant="top" src={`http://localhost:8000/storage/${category.image}`} />
+                    <Card.Img variant="top" src={`${baseUrl}/storage/${category.image}`} />
                         <Card.Body>
                             <Card.Title>{category.name}</Card.Title>
                             <p>Total Subcategories: {category.subcategories.length}</p>
